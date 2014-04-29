@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WAPlayerCell.h"
 
 @interface WAViewController : UIViewController
+
+- (void)damageUpForCell:(WAPlayerCell *)cellTapped;
+- (void)damageDownForCell:(WAPlayerCell *)cellTapped;
 
 @end

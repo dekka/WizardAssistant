@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001CC16B190EC614009B717B /* WAPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 001CC16A190EC614009B717B /* WAPlayer.m */; };
+		001CC16E190EFC91009B717B /* WACommanderDamageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 001CC16D190EFC91009B717B /* WACommanderDamageView.m */; };
+		001CC170190EFF86009B717B /* CommanderDamage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001CC16F190EFF86009B717B /* CommanderDamage.xib */; };
 		006DC7E019057A420031B76E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006DC7DF19057A420031B76E /* Foundation.framework */; };
 		006DC7E219057A420031B76E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006DC7E119057A420031B76E /* CoreGraphics.framework */; };
 		006DC7E419057A420031B76E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006DC7E319057A420031B76E /* UIKit.framework */; };
@@ -22,6 +25,10 @@
 		006DC80419057A420031B76E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006DC7E319057A420031B76E /* UIKit.framework */; };
 		006DC80C19057A420031B76E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 006DC80A19057A420031B76E /* InfoPlist.strings */; };
 		006DC80E19057A420031B76E /* WizardAssistantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 006DC80D19057A420031B76E /* WizardAssistantTests.m */; };
+		0073A41F190AF50D0021F118 /* WAPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073A41E190AF50D0021F118 /* WAPlayerCell.m */; };
+		0073A422190B146A0021F118 /* WASettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073A421190B146A0021F118 /* WASettingsViewController.m */; };
+		0073A425190B18DF0021F118 /* WAEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073A424190B18DF0021F118 /* WAEditCell.m */; };
+		0073A428190B18E90021F118 /* WAAddPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073A427190B18E90021F118 /* WAAddPlayerCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		001CC169190EC614009B717B /* WAPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPlayer.h; sourceTree = "<group>"; };
+		001CC16A190EC614009B717B /* WAPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAPlayer.m; sourceTree = "<group>"; };
+		001CC16C190EFC91009B717B /* WACommanderDamageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WACommanderDamageView.h; sourceTree = "<group>"; };
+		001CC16D190EFC91009B717B /* WACommanderDamageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WACommanderDamageView.m; sourceTree = "<group>"; };
+		001CC16F190EFF86009B717B /* CommanderDamage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommanderDamage.xib; sourceTree = "<group>"; };
 		006DC7DC19057A420031B76E /* WizardAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		006DC7DF19057A420031B76E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		006DC7E119057A420031B76E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,6 +67,14 @@
 		006DC80919057A420031B76E /* WizardAssistantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WizardAssistantTests-Info.plist"; sourceTree = "<group>"; };
 		006DC80B19057A420031B76E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		006DC80D19057A420031B76E /* WizardAssistantTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WizardAssistantTests.m; sourceTree = "<group>"; };
+		0073A41D190AF50D0021F118 /* WAPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPlayerCell.h; sourceTree = "<group>"; };
+		0073A41E190AF50D0021F118 /* WAPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAPlayerCell.m; sourceTree = "<group>"; };
+		0073A420190B146A0021F118 /* WASettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASettingsViewController.h; sourceTree = "<group>"; };
+		0073A421190B146A0021F118 /* WASettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASettingsViewController.m; sourceTree = "<group>"; };
+		0073A423190B18DF0021F118 /* WAEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAEditCell.h; sourceTree = "<group>"; };
+		0073A424190B18DF0021F118 /* WAEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEditCell.m; sourceTree = "<group>"; };
+		0073A426190B18E90021F118 /* WAAddPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAddPlayerCell.h; sourceTree = "<group>"; };
+		0073A427190B18E90021F118 /* WAAddPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAddPlayerCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,14 +134,27 @@
 		006DC7E519057A420031B76E /* WizardAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				006DC7FA19057A420031B76E /* Images.xcassets */,
+				006DC7F419057A420031B76E /* Main_iPad.storyboard */,
+				006DC7F119057A420031B76E /* Main_iPhone.storyboard */,
+				006DC7E619057A420031B76E /* Supporting Files */,
+				0073A426190B18E90021F118 /* WAAddPlayerCell.h */,
+				0073A427190B18E90021F118 /* WAAddPlayerCell.m */,
 				006DC7EE19057A420031B76E /* WAAppDelegate.h */,
 				006DC7EF19057A420031B76E /* WAAppDelegate.m */,
-				006DC7F119057A420031B76E /* Main_iPhone.storyboard */,
-				006DC7F419057A420031B76E /* Main_iPad.storyboard */,
+				0073A423190B18DF0021F118 /* WAEditCell.h */,
+				0073A424190B18DF0021F118 /* WAEditCell.m */,
+				001CC169190EC614009B717B /* WAPlayer.h */,
+				001CC16A190EC614009B717B /* WAPlayer.m */,
+				0073A41D190AF50D0021F118 /* WAPlayerCell.h */,
+				0073A41E190AF50D0021F118 /* WAPlayerCell.m */,
+				0073A420190B146A0021F118 /* WASettingsViewController.h */,
+				0073A421190B146A0021F118 /* WASettingsViewController.m */,
 				006DC7F719057A420031B76E /* WAViewController.h */,
 				006DC7F819057A420031B76E /* WAViewController.m */,
-				006DC7FA19057A420031B76E /* Images.xcassets */,
-				006DC7E619057A420031B76E /* Supporting Files */,
+				001CC16C190EFC91009B717B /* WACommanderDamageView.h */,
+				001CC16D190EFC91009B717B /* WACommanderDamageView.m */,
+				001CC16F190EFF86009B717B /* CommanderDamage.xib */,
 			);
 			path = WizardAssistant;
 			sourceTree = "<group>";
@@ -233,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				006DC7F619057A420031B76E /* Main_iPad.storyboard in Resources */,
+				001CC170190EFF86009B717B /* CommanderDamage.xib in Resources */,
 				006DC7FB19057A420031B76E /* Images.xcassets in Resources */,
 				006DC7F319057A420031B76E /* Main_iPhone.storyboard in Resources */,
 				006DC7EA19057A420031B76E /* InfoPlist.strings in Resources */,
@@ -254,9 +288,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0073A428190B18E90021F118 /* WAAddPlayerCell.m in Sources */,
+				001CC16E190EFC91009B717B /* WACommanderDamageView.m in Sources */,
 				006DC7F919057A420031B76E /* WAViewController.m in Sources */,
+				001CC16B190EC614009B717B /* WAPlayer.m in Sources */,
+				0073A425190B18DF0021F118 /* WAEditCell.m in Sources */,
 				006DC7F019057A420031B76E /* WAAppDelegate.m in Sources */,
+				0073A41F190AF50D0021F118 /* WAPlayerCell.m in Sources */,
 				006DC7EC19057A420031B76E /* main.m in Sources */,
+				0073A422190B146A0021F118 /* WASettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +511,7 @@
 				006DC81319057A420031B76E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		006DC81419057A420031B76E /* Build configuration list for PBXNativeTarget "WizardAssistantTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +520,7 @@
 				006DC81619057A420031B76E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
