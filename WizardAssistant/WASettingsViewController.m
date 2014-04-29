@@ -48,17 +48,19 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (_isEditing) {
-        return self.players.count;
+        return MIN(self.players.count, 6);
     } else {
-        return self.players.count + 1;
+        return MIN(self.players.count + 1, 6);
     }
+    
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 //    NSLog(@"Selected Row: %d", indexPath.row);
     if (!_isEditing) {
-        if ((indexPath.row == self.players.count) && indexPath.row < 5) {
+        if ((indexPath.row == self.players.count) && indexPath.row < 6) {
             WAPlayer *newPlayer = [WAPlayer new];
             [_players addObject:newPlayer];
             _isEditing = YES;
@@ -123,6 +125,17 @@
 - (IBAction)handleExit:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)addFivePlayers:(id)sender
+{
+    WAPlayer *newPlayer = [WAPlayer new];
+    [_players addObject:newPlayer];
+    [_players addObject:newPlayer];
+    [_players addObject:newPlayer];
+    [_players addObject:newPlayer];
+    [_players addObject:newPlayer];
+    [self.collectionView reloadData];
 }
 
 @end

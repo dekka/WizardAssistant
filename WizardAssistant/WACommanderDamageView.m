@@ -82,67 +82,38 @@
 
 - (IBAction)stepperPressed:(UIStepper *)sender
 {
+    UILabel *damageLabel;
+    UILabel *commanderLabel;
+    
     if (self.stepperOne == sender) {
-        double value = [sender value];
-        double currentValue = [self.damageOne.text doubleValue];
-        currentValue +=value;
-        sender.value = 0;
-        [self.damageOne setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        int changeInHealth = ([self.damageOne.text intValue] - [self.playerCell.commanderOne.text intValue]);
-        [self.playerCell.playerHealth setText:[NSString stringWithFormat:@"%d", ([self.playerCell.playerHealth.text intValue] - (int)changeInHealth)]];
-        [self.playerCell.commanderOne setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        //subtract this number from playerHealth
-        
+        damageLabel = _damageOne;
+        commanderLabel = _playerCell.commanderOne;
     } else if (self.stepperTwo == sender) {
-        double value = [sender value];
-        double currentValue = [self.damageTwo.text doubleValue];
-        currentValue +=value;
-        sender.value = 0;
-        [self.damageTwo setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        int changeInHealth = ([self.damageTwo.text intValue] - [self.playerCell.commanderTwo.text intValue]);
-        [self.playerCell.playerHealth setText:[NSString stringWithFormat:@"%d", ([self.playerCell.playerHealth.text intValue] - (int)changeInHealth)]];
-        [self.playerCell.commanderTwo setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        
+        damageLabel = _damageTwo;
+        commanderLabel = _playerCell.commanderTwo;
     } else if (self.stepperThree == sender) {
-        double value = [sender value];
-        double currentValue = [self.damageThree.text doubleValue];
-        currentValue +=value;
-        sender.value = 0;
-        [self.damageThree setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        int changeInHealth = ([self.damageThree.text intValue] - [self.playerCell.commanderThree.text intValue]);
-        [self.playerCell.playerHealth setText:[NSString stringWithFormat:@"%d", ([self.playerCell.playerHealth.text intValue] - (int)changeInHealth)]];
-        [self.playerCell.commanderThree setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        
+        damageLabel = _damageThree;
+        commanderLabel = _playerCell.commanderThree;
     } else if (self.stepperFour == sender) {
-        double value = [sender value];
-        double currentValue = [self.damageFour.text doubleValue];
-        currentValue +=value;
-        sender.value = 0;
-        [self.damageFour setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        int changeInHealth = ([self.damageFour.text intValue] - [self.playerCell.commanderFour.text intValue]);
-        [self.playerCell.playerHealth setText:[NSString stringWithFormat:@"%d", ([self.playerCell.playerHealth.text intValue] - (int)changeInHealth)]];
-        [self.playerCell.commanderFour setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        
+        damageLabel = _damageFour;
+        commanderLabel = _playerCell.commanderFour;
     } else if (self.stepperFive == sender) {
-        double value = [sender value];
-        double currentValue = [self.damageFive.text doubleValue];
-        currentValue +=value;
-        sender.value = 0;
-        [self.damageFive setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        int changeInHealth = ([self.damageFive.text intValue] - [self.playerCell.commanderFive.text intValue]);
-        [self.playerCell.playerHealth setText:[NSString stringWithFormat:@"%d", ([self.playerCell.playerHealth.text intValue] - (int)changeInHealth)]];
-        [self.playerCell.commanderFive setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        
+        damageLabel = _damageFive;
+        commanderLabel = _playerCell.commanderFive;
     } else if (self.stepperSix == sender) {
-        double value = [sender value];
-        double currentValue = [self.damageSix.text doubleValue];
-        currentValue +=value;
-        sender.value = 0;
-        [self.damageSix setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
-        int changeInHealth = ([self.damageSix.text intValue] - [self.playerCell.commanderSix.text intValue]);
-        [self.playerCell.playerHealth setText:[NSString stringWithFormat:@"%d", ([self.playerCell.playerHealth.text intValue] - (int)changeInHealth)]];
-        [self.playerCell.commanderSix setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
+        damageLabel = _damageSix;
+        commanderLabel = _playerCell.commanderSix;
     }
+
+    double value = [sender value];
+    double currentValue = [damageLabel.text doubleValue];
+    currentValue +=value;
+    sender.value = 0;
+    [damageLabel setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
+    int changeInHealth = ([damageLabel.text intValue] - [commanderLabel.text intValue]);
+    [self.playerCell.playerHealth setText:[NSString stringWithFormat:@"%d", ([self.playerCell.playerHealth.text intValue] - (int)changeInHealth)]];
+    [commanderLabel setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
+    //subtract this number from playerHealth
 
 }
 
