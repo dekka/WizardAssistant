@@ -9,6 +9,10 @@
 #import "WACommanderDamageView.h"
 #import "WAPlayerCell.h"
 #import "WAViewController.h"
+#import "WASettingsViewController.h"
+#import "WAPlayer.h"
+#import "WACommanderDamage.h"
+
 
 
 @implementation WACommanderDamageView
@@ -23,10 +27,12 @@
     return self;
 }
 
-- (void)setupCommanderDamageView:(NSUInteger)playerCount WithCell:(WAPlayerCell *)playerCell
+- (void)setupCommanderDamageView:(NSMutableArray *)players WithCell:(WAPlayerCell *)playerCell andPlayer:(WAPlayer *)player andWithDimView:(UIView *)dimView
 {
     self.commanderLabels = [NSMutableArray new];
     self.playerCell = playerCell;
+    self.dimView = dimView;
+    self.selectedPlayer = player;
     
     [self.commanderLabels addObject:self.playerOne];
     [self.commanderLabels addObject:self.playerTwo];
@@ -35,9 +41,10 @@
     [self.commanderLabels addObject:self.playerFive];
     [self.commanderLabels addObject:self.playerSix];
     
-    for (int i = 0; i < playerCount; i++) {
+    for (int i = 0; i < players.count; i++) {
         UILabel *label = [self.commanderLabels objectAtIndex:i];
         label.hidden = NO;
+        label.text = [[players objectAtIndex:i] name];
     }
     
     self.commanderDamageLabels = [NSMutableArray new];
@@ -49,7 +56,7 @@
     [self.commanderDamageLabels addObject:self.damageFive];
     [self.commanderDamageLabels addObject:self.damageSix];
     
-    for (int i = 0; i < playerCount; i++) {
+    for (int i = 0; i < players.count; i++) {
         UILabel *label = [self.commanderDamageLabels objectAtIndex:i];
         label.hidden = NO;
     }
@@ -63,7 +70,7 @@
     [self.commanderDamageSteppers addObject:self.stepperFive];
     [self.commanderDamageSteppers addObject:self.stepperSix];
     
-    for (int i = 0; i < playerCount; i++) {
+    for (int i = 0; i < players.count; i++) {
         UIStepper *stepper = [self.commanderDamageSteppers objectAtIndex:i];
         stepper.hidden = NO;
     }
@@ -78,31 +85,47 @@
             
         }
     }
+    
+    if (self.poisonDamage)
+    {
+        self.poisonDamage.text = self.playerCell.poisonDamage.text;
+    }
+    
+//    [_playerOne setText:@"%@", playerCell.playerName];
+
+  
+        
 }
 
 - (IBAction)stepperPressed:(UIStepper *)sender
 {
     UILabel *damageLabel;
     UILabel *commanderLabel;
-    
+    NSInteger stepperNumber;
     if (self.stepperOne == sender) {
         damageLabel = _damageOne;
         commanderLabel = _playerCell.commanderOne;
+        stepperNumber = 0;
     } else if (self.stepperTwo == sender) {
         damageLabel = _damageTwo;
         commanderLabel = _playerCell.commanderTwo;
+        stepperNumber = 1;
     } else if (self.stepperThree == sender) {
         damageLabel = _damageThree;
         commanderLabel = _playerCell.commanderThree;
+        stepperNumber = 2;
     } else if (self.stepperFour == sender) {
         damageLabel = _damageFour;
         commanderLabel = _playerCell.commanderFour;
+        stepperNumber = 3;
     } else if (self.stepperFive == sender) {
         damageLabel = _damageFive;
         commanderLabel = _playerCell.commanderFive;
+        stepperNumber = 4;
     } else if (self.stepperSix == sender) {
         damageLabel = _damageSix;
         commanderLabel = _playerCell.commanderSix;
+        stepperNumber = 5;
     }
 
     double value = [sender value];
@@ -113,25 +136,40 @@
     int changeInHealth = ([damageLabel.text intValue] - [commanderLabel.text intValue]);
     [self.playerCell.playerHealth setText:[NSString stringWithFormat:@"%d", ([self.playerCell.playerHealth.text intValue] - (int)changeInHealth)]];
     [commanderLabel setText:[NSString stringWithFormat:@"%d", (int)currentValue]];
+
+    WACommanderDamage *cmdDamage = self.selectedPlayer.commanderDamages[stepperNumber];
+    
+    cmdDamage.damage += value;
+    
     //subtract this number from playerHealth
 
 }
 
-- (void)updatePlayerHealth
+- (IBAction)poisonStepperPressed:(UIStepper *)sender
 {
-    
+    double poisonValue = [sender value];
+    double currentPoisonValue = [self.poisonDamage.text doubleValue];
+    currentPoisonValue += poisonValue;
+    sender.value = 0;
+    [self.poisonDamage setText:[NSString stringWithFormat:@"%d", (int)currentPoisonValue]];
+    [self.playerCell.poisonDamage setText:[NSString stringWithFormat:@"%d",(int)currentPoisonValue]];
+    self.playerCell.poisonDamage.hidden = NO;
+    self.selectedPlayer.poisonDamageTaken = currentPoisonValue;
 }
+
 
 - (IBAction)closeWindow:(id)sender
 {
     [UIView animateWithDuration:.3 animations:^{
         
-        self.frame = CGRectMake(15, -320, 290, 290);
+        self.frame = CGRectMake(15, -344, 290, 344);
     } completion:^(BOOL finished) {
+        [self.dimView removeFromSuperview];
         [self removeFromSuperview];
     }];
     
 }
+
 
 
 

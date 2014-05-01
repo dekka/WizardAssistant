@@ -11,5 +11,11 @@
 @interface WAPlayer : NSObject
 
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic) NSInteger health;
+@property (nonatomic, strong) NSMutableArray *commanderDamages;
+@property (nonatomic) NSInteger poisonDamageTaken;
+
+- (void)setupPlayerWithName:(NSString *)name;
+- (void)resetPlayerForEDH:(BOOL)isEDH;
 
 @end

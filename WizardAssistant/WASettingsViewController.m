@@ -10,6 +10,9 @@
 #import "WAEditCell.h"
 #import "WAAddPlayerCell.h"
 #import "WAPlayer.h"
+#import "WAViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface WASettingsViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate>
 
@@ -31,6 +34,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.isEDHOn)
+    {
+        self.edhSwitch.On = YES;
+    }
+    else
+    {
+        self.edhSwitch.On = NO;
+    }
+
     
 }
 
@@ -87,7 +99,8 @@
         WAPlayer *player = self.players[indexPath.row];
         editCell.nameField.text = player.name;
         
-         editCell.backgroundColor = [UIColor blueColor];
+        editCell.layer.borderWidth = 1.0f;
+        editCell.layer.borderColor = [UIColor blueColor].CGColor;
         
         return editCell;
     }
@@ -107,7 +120,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     WAPlayer *player = [self.players objectAtIndex:_players.count-1];
-    player.name = textField.text;
+    [player setupPlayerWithName:textField.text];
     _isEditing = NO;
     [textField resignFirstResponder];
     
@@ -122,9 +135,26 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)handleExit:(id)sender {
+- (IBAction)handleExit:(id)sender
+{
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)edhSwitchChanged:(id)sender
+{
+    if (self.gameHasStarted)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Whoa Playa" message:@"You need to reset your game first" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+        [alertView show];
+        [self.edhSwitch setOn:(!self.edhSwitch.on) animated:YES];
+    }
+    else
+    {
+    [self.delegate edhModeChanged];
+    }
+    
+    
 }
 
 - (IBAction)addFivePlayers:(id)sender
@@ -137,6 +167,8 @@
     [_players addObject:newPlayer];
     [self.collectionView reloadData];
 }
+
+
 
 @end
 

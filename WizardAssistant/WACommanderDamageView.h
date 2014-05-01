@@ -22,18 +22,21 @@
 @property (weak, nonatomic) IBOutlet UILabel *damageFour;
 @property (weak, nonatomic) IBOutlet UILabel *damageFive;
 @property (weak, nonatomic) IBOutlet UILabel *damageSix;
+@property (weak, nonatomic) IBOutlet UILabel *poisonDamage;
 @property (weak, nonatomic) IBOutlet UIStepper *stepperOne;
 @property (weak, nonatomic) IBOutlet UIStepper *stepperTwo;
 @property (weak, nonatomic) IBOutlet UIStepper *stepperThree;
 @property (weak, nonatomic) IBOutlet UIStepper *stepperFour;
 @property (weak, nonatomic) IBOutlet UIStepper *stepperFive;
 @property (weak, nonatomic) IBOutlet UIStepper *stepperSix;
-@property (weak, nonatomic) IBOutlet UIButton *closeWindow;
+@property (weak, nonatomic) IBOutlet UIStepper *poisonStepper;
 @property (nonatomic, strong) NSMutableArray *commanderLabels;
 @property (nonatomic, strong) NSMutableArray *commanderDamageLabels;
 @property (nonatomic, strong) NSMutableArray *commanderDamageSteppers;
 @property (nonatomic, weak) WAPlayerCell *playerCell;
+@property (nonatomic,weak) UIView *dimView;
+@property (nonatomic,weak) WAPlayer *selectedPlayer;
 
-- (void)setupCommanderDamageView:(NSUInteger)playerCount WithCell:(WAPlayerCell *)playerCell;
+- (void)setupCommanderDamageView:(NSMutableArray *)players WithCell:(WAPlayerCell *)playerCell andPlayer:(WAPlayer *)player andWithDimView:(UIView *)dimView;
 
 @end

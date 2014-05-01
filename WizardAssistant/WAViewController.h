@@ -11,7 +11,10 @@
 
 @interface WAViewController : UIViewController
 
-- (void)damageUpForCell:(WAPlayerCell *)cellTapped;
-- (void)damageDownForCell:(WAPlayerCell *)cellTapped;
+@property (nonatomic) BOOL isEDH;
+
+
+- (void)damageUpForCell:(WAPlayerCell *)cellTapped andPlayer:(WAPlayer *)player;
+- (void)damageDownForCell:(WAPlayerCell *)cellTapped andPlayer:(WAPlayer *)player;
 
 @end

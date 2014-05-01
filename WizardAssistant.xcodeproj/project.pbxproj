@@ -10,6 +10,10 @@
 		001CC16B190EC614009B717B /* WAPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 001CC16A190EC614009B717B /* WAPlayer.m */; };
 		001CC16E190EFC91009B717B /* WACommanderDamageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 001CC16D190EFC91009B717B /* WACommanderDamageView.m */; };
 		001CC170190EFF86009B717B /* CommanderDamage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 001CC16F190EFF86009B717B /* CommanderDamage.xib */; };
+		0067C7471911776D00779BD8 /* WAPoisonDamageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0067C7461911776D00779BD8 /* WAPoisonDamageView.m */; };
+		0067C749191177A100779BD8 /* PoisonDamage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0067C748191177A100779BD8 /* PoisonDamage.xib */; };
+		0067C74C1911B18500779BD8 /* WACommanderDamage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0067C74B1911B18500779BD8 /* WACommanderDamage.m */; };
+		0067C7521912AB8800779BD8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0067C7511912AB8800779BD8 /* QuartzCore.framework */; };
 		006DC7E019057A420031B76E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006DC7DF19057A420031B76E /* Foundation.framework */; };
 		006DC7E219057A420031B76E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006DC7E119057A420031B76E /* CoreGraphics.framework */; };
 		006DC7E419057A420031B76E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006DC7E319057A420031B76E /* UIKit.framework */; };
@@ -47,6 +51,12 @@
 		001CC16C190EFC91009B717B /* WACommanderDamageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WACommanderDamageView.h; sourceTree = "<group>"; };
 		001CC16D190EFC91009B717B /* WACommanderDamageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WACommanderDamageView.m; sourceTree = "<group>"; };
 		001CC16F190EFF86009B717B /* CommanderDamage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommanderDamage.xib; sourceTree = "<group>"; };
+		0067C7451911776D00779BD8 /* WAPoisonDamageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPoisonDamageView.h; sourceTree = "<group>"; };
+		0067C7461911776D00779BD8 /* WAPoisonDamageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAPoisonDamageView.m; sourceTree = "<group>"; };
+		0067C748191177A100779BD8 /* PoisonDamage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PoisonDamage.xib; path = ../PoisonDamage.xib; sourceTree = "<group>"; };
+		0067C74A1911B18500779BD8 /* WACommanderDamage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WACommanderDamage.h; sourceTree = "<group>"; };
+		0067C74B1911B18500779BD8 /* WACommanderDamage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WACommanderDamage.m; sourceTree = "<group>"; };
+		0067C7511912AB8800779BD8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		006DC7DC19057A420031B76E /* WizardAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		006DC7DF19057A420031B76E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		006DC7E119057A420031B76E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -82,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0067C7521912AB8800779BD8 /* QuartzCore.framework in Frameworks */,
 				006DC7E219057A420031B76E /* CoreGraphics.framework in Frameworks */,
 				006DC7E419057A420031B76E /* UIKit.framework in Frameworks */,
 				006DC7E019057A420031B76E /* Foundation.framework in Frameworks */,
@@ -123,6 +134,7 @@
 		006DC7DE19057A420031B76E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0067C7511912AB8800779BD8 /* QuartzCore.framework */,
 				006DC7DF19057A420031B76E /* Foundation.framework */,
 				006DC7E119057A420031B76E /* CoreGraphics.framework */,
 				006DC7E319057A420031B76E /* UIKit.framework */,
@@ -146,6 +158,8 @@
 				0073A424190B18DF0021F118 /* WAEditCell.m */,
 				001CC169190EC614009B717B /* WAPlayer.h */,
 				001CC16A190EC614009B717B /* WAPlayer.m */,
+				0067C74A1911B18500779BD8 /* WACommanderDamage.h */,
+				0067C74B1911B18500779BD8 /* WACommanderDamage.m */,
 				0073A41D190AF50D0021F118 /* WAPlayerCell.h */,
 				0073A41E190AF50D0021F118 /* WAPlayerCell.m */,
 				0073A420190B146A0021F118 /* WASettingsViewController.h */,
@@ -155,6 +169,9 @@
 				001CC16C190EFC91009B717B /* WACommanderDamageView.h */,
 				001CC16D190EFC91009B717B /* WACommanderDamageView.m */,
 				001CC16F190EFF86009B717B /* CommanderDamage.xib */,
+				0067C7451911776D00779BD8 /* WAPoisonDamageView.h */,
+				0067C7461911776D00779BD8 /* WAPoisonDamageView.m */,
+				0067C748191177A100779BD8 /* PoisonDamage.xib */,
 			);
 			path = WizardAssistant;
 			sourceTree = "<group>";
@@ -267,6 +284,7 @@
 			files = (
 				006DC7F619057A420031B76E /* Main_iPad.storyboard in Resources */,
 				001CC170190EFF86009B717B /* CommanderDamage.xib in Resources */,
+				0067C749191177A100779BD8 /* PoisonDamage.xib in Resources */,
 				006DC7FB19057A420031B76E /* Images.xcassets in Resources */,
 				006DC7F319057A420031B76E /* Main_iPhone.storyboard in Resources */,
 				006DC7EA19057A420031B76E /* InfoPlist.strings in Resources */,
@@ -291,10 +309,12 @@
 				0073A428190B18E90021F118 /* WAAddPlayerCell.m in Sources */,
 				001CC16E190EFC91009B717B /* WACommanderDamageView.m in Sources */,
 				006DC7F919057A420031B76E /* WAViewController.m in Sources */,
+				0067C7471911776D00779BD8 /* WAPoisonDamageView.m in Sources */,
 				001CC16B190EC614009B717B /* WAPlayer.m in Sources */,
 				0073A425190B18DF0021F118 /* WAEditCell.m in Sources */,
 				006DC7F019057A420031B76E /* WAAppDelegate.m in Sources */,
 				0073A41F190AF50D0021F118 /* WAPlayerCell.m in Sources */,
+				0067C74C1911B18500779BD8 /* WACommanderDamage.m in Sources */,
 				006DC7EC19057A420031B76E /* main.m in Sources */,
 				0073A422190B146A0021F118 /* WASettingsViewController.m in Sources */,
 			);
@@ -435,6 +455,7 @@
 				GCC_PREFIX_HEADER = "WizardAssistant/WizardAssistant-Prefix.pch";
 				INFOPLIST_FILE = "WizardAssistant/WizardAssistant-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -448,6 +469,7 @@
 				GCC_PREFIX_HEADER = "WizardAssistant/WizardAssistant-Prefix.pch";
 				INFOPLIST_FILE = "WizardAssistant/WizardAssistant-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

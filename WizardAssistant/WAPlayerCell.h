@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WAPlayer.h"
 
 @interface WAPlayerCell : UICollectionViewCell
 
-@property (nonatomic, weak) IBOutlet UIButton *increaseLifeButton;
-@property (nonatomic, weak) IBOutlet UIButton *decreaseLifeButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *playerHealth;
 @property (nonatomic, weak) IBOutlet UILabel *playerName;
 @property (weak, nonatomic) IBOutlet UILabel *commanderOne;
@@ -21,7 +21,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *commanderFive;
 @property (weak, nonatomic) IBOutlet UILabel *commanderSix;
 @property (nonatomic, strong) NSMutableArray *commanderLabels;
+@property (weak, nonatomic) IBOutlet UILabel *poisonDamage;
 
-- (void)setupCommanderDamageWithPlayerCount:(int)playerCount;
+- (void)setupCommanderDamageWithPlayerCount:(int)playerCount AndPlayer:(WAPlayer *)player;
+- (void)setupStandardFormatCellsWithPlayer:(WAPlayer *)player;
+
 
 @end
