@@ -123,9 +123,9 @@
     
     if (self.gameModel.formatIsEdh)
     {
-        [playerCell setupCommanderDamageWithPlayerCount:self.gameModel.players.count AndPlayer:player];
+        [playerCell setupCommanderDamageWithPlayerCount:self.gameModel.players.count AndPlayer:player atIndexPath:indexPath];
     } else {
-        [playerCell setupStandardFormatCellsWithPlayer:player];
+        [playerCell setupStandardFormatCellsWithPlayer:player atIndexPath:indexPath];
     }
     
     playerCell.playerName.text = player.name;

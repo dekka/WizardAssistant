@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WAPlayer.h"
+#import "PlayerCelPanelView.h"
 
 @interface WAPlayerCell : UICollectionViewCell
 
@@ -23,8 +24,9 @@
 @property (nonatomic, strong) NSMutableArray *commanderLabels;
 @property (weak, nonatomic) IBOutlet UILabel *poisonDamage;
 
-- (void)setupCommanderDamageWithPlayerCount:(int)playerCount AndPlayer:(WAPlayer *)player;
-- (void)setupStandardFormatCellsWithPlayer:(WAPlayer *)player;
+- (void)setupCommanderDamageWithPlayerCount:(int)playerCount AndPlayer:(WAPlayer *)player atIndexPath:(NSIndexPath *)indexPath;
+- (void)setupStandardFormatCellsWithPlayer:(WAPlayer *)player atIndexPath:(NSIndexPath *)indexPath;
 
+@property (nonatomic, weak) IBOutlet PlayerCelPanelView *panelView;
 
 @end

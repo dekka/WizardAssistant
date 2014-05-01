@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) UIColor *topColor;
 @property (nonatomic, strong) UIColor *bottomColor;
-@property (nonatomic, readwrite) kPlayerCellColorScheme colorScheme;
 @end
 
 @implementation PlayerCelPanelView
@@ -22,35 +21,40 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.colorScheme = colorScheme;
-        switch (self.colorScheme) {
-            case kPlayerCellColorSchemeBlue:
-                self.topColor = [UIColor colorWithRed:0.451 green:0.714 blue:0.886 alpha:1];
-                self.bottomColor = [UIColor colorWithRed:0.467 green:0.675 blue:0.812 alpha:1];
-                break;
-            case kPlayerCellColorSchemeOrange:
-                self.topColor = [UIColor colorWithRed: 0.882 green: 0.616 blue: 0.389 alpha: 1];
-                self.bottomColor = [UIColor colorWithRed: 0.824 green: 0.502 blue: 0.302 alpha: 1];;
-                break;
-            case kPlayerCellColorSchemePurple:
-                self.topColor = [UIColor colorWithRed:0.733 green:0.588 blue:0.812 alpha:1];
-                self.bottomColor = [UIColor colorWithRed:0.706 green:0.537 blue:0.784 alpha:1];
-                break;
-            case kPlayerCellColorSchemeRed:
-                self.topColor = [UIColor colorWithRed:0.914 green:0.557 blue:0.518 alpha:1];
-                self.bottomColor = [UIColor colorWithRed:0.824 green:0.514 blue:0.478 alpha:1];
-                break;
-            case kPlayerCellColorSchemeTurqoise:
-                self.topColor = [UIColor colorWithRed:0.431 green:0.820 blue:0.745 alpha:1];
-                self.bottomColor = [UIColor colorWithRed:0.424 green:0.753 blue:0.690 alpha:1];
-                break;
-            case kPlayerCellColorSchemeYellow:
-                self.topColor = [UIColor colorWithRed:0.937 green:0.839 blue:0.412 alpha:1];
-                self.bottomColor = [UIColor colorWithRed:0.941 green:0.745 blue:0.420 alpha:1];
-                break;
-        }
     }
     
     return self;
+}
+
+- (void)setColorScheme:(kPlayerCellColorScheme)colorScheme
+{
+    _colorScheme = colorScheme;
+    switch (_colorScheme) {
+        case kPlayerCellColorSchemeBlue:
+            self.topColor = [UIColor colorWithRed:0.451 green:0.714 blue:0.886 alpha:1];
+            self.bottomColor = [UIColor colorWithRed:0.467 green:0.675 blue:0.812 alpha:1];
+            break;
+        case kPlayerCellColorSchemeOrange:
+            self.topColor = [UIColor colorWithRed: 0.882 green: 0.616 blue: 0.389 alpha: 1];
+            self.bottomColor = [UIColor colorWithRed: 0.824 green: 0.502 blue: 0.302 alpha: 1];;
+            break;
+        case kPlayerCellColorSchemePurple:
+            self.topColor = [UIColor colorWithRed:0.733 green:0.588 blue:0.812 alpha:1];
+            self.bottomColor = [UIColor colorWithRed:0.706 green:0.537 blue:0.784 alpha:1];
+            break;
+        case kPlayerCellColorSchemeRed:
+            self.topColor = [UIColor colorWithRed:0.914 green:0.557 blue:0.518 alpha:1];
+            self.bottomColor = [UIColor colorWithRed:0.824 green:0.514 blue:0.478 alpha:1];
+            break;
+        case kPlayerCellColorSchemeTurqoise:
+            self.topColor = [UIColor colorWithRed:0.431 green:0.820 blue:0.745 alpha:1];
+            self.bottomColor = [UIColor colorWithRed:0.424 green:0.753 blue:0.690 alpha:1];
+            break;
+        case kPlayerCellColorSchemeYellow:
+            self.topColor = [UIColor colorWithRed:0.937 green:0.839 blue:0.412 alpha:1];
+            self.bottomColor = [UIColor colorWithRed:0.941 green:0.745 blue:0.420 alpha:1];
+            break;
+    }
 }
 
 - (void)drawRect:(CGRect)rect

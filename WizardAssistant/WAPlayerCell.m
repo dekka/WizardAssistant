@@ -21,7 +21,7 @@
     return self;
 }
 
-- (void)setupCommanderDamageWithPlayerCount:(int)playerCount AndPlayer:(WAPlayer *)player
+- (void)setupCommanderDamageWithPlayerCount:(int)playerCount AndPlayer:(WAPlayer *)player atIndexPath:(NSIndexPath *)indexPath;
 {
     
     self.playerName.text = player.name;
@@ -45,9 +45,10 @@
     }
     self.poisonDamage.hidden = YES;
     
+    self.panelView.colorScheme = indexPath.row;
 }
 
-- (void)setupStandardFormatCellsWithPlayer:(WAPlayer *)player
+- (void)setupStandardFormatCellsWithPlayer:(WAPlayer *)player atIndexPath:(NSIndexPath *)indexPath;
 {
     self.playerName.text = player.name;
     self.playerHealth.text = [NSString stringWithFormat:@"%ld",(long)player.health];

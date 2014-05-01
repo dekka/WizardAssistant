@@ -68,10 +68,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Blue2x" translatesAutoresizingMaskIntoConstraints="NO" id="t8j-iU-6C1">
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M7m-wj-DnU" customClass="PlayerCelPanelView">
                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="160"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="40" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCY-Fy-9js">
                                                     <rect key="frame" x="-10" y="0.0" width="150" height="150"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -151,6 +152,7 @@
                                             <outlet property="commanderSix" destination="83r-hB-9eV" id="NE8-tt-uKa"/>
                                             <outlet property="commanderThree" destination="kgA-eR-Pcs" id="iCV-e6-Wfa"/>
                                             <outlet property="commanderTwo" destination="W7q-EE-Slo" id="59H-td-G1y"/>
+                                            <outlet property="panelView" destination="M7m-wj-DnU" id="xgt-wx-7eY"/>
                                             <outlet property="playerHealth" destination="uCY-Fy-9js" id="5e0-qD-oVS"/>
                                             <outlet property="playerName" destination="ztX-eo-rjV" id="oxP-bS-cza"/>
                                             <outlet property="poisonDamage" destination="gOt-Io-5Db" id="fIm-WL-IBW"/>
@@ -314,7 +316,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Blue2x" width="536" height="554"/>
         <image name="gear_03" width="127" height="123"/>
         <image name="h:t-1" width="140" height="148"/>
     </resources>

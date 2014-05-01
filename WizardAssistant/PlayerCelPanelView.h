@@ -21,6 +21,6 @@ typedef NS_OPTIONS(NSUInteger, kPlayerCellColorScheme) {
 
 - (instancetype)initWithFrame:(CGRect)frame andColorScheme:(kPlayerCellColorScheme)colorScheme;
 
-@property (nonatomic, readonly) kPlayerCellColorScheme colorScheme;
+@property (nonatomic, readwrite) kPlayerCellColorScheme colorScheme;
 
 @end
