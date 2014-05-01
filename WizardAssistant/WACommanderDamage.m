@@ -18,7 +18,26 @@
         self.damage = 0;
     }
     
+
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (!self)
+    {
+        return nil;
+    }
+    
+    self.damage = [aDecoder decodeIntegerForKey:@"damage"];
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeInteger:self.damage forKey:@"damage"];
 }
 
 @end

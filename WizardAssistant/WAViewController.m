@@ -12,8 +12,10 @@
 #import "WAPlayer.h"
 #import "WACommanderDamageView.h"
 #import "WAPoisonDamageView.h"
+#import "WACoinFlipController.h"
+#import "GameModel.h"
 
-@interface WAViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, WASettingsViewControllerDelegate, UIAlertViewDelegate>
+@interface WAViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, WASettingsViewControllerDelegate, UIAlertViewDelegate, NSCoding>
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) WAPlayerCell *playerCell;
@@ -21,7 +23,8 @@
 @property (nonatomic, strong) NSMutableArray *players;
 @property (nonatomic, strong) WACommanderDamageView *commanderDamageView;
 @property (nonatomic, strong) WAPoisonDamageView *poisonDamageView;
-@property (nonatomic) BOOL gameStarted;
+@property (nonatomic, strong) WACoinFlipController *coinFlipView;
+@property (nonatomic, strong) GameModel *gameModel;
 
 @end
 
@@ -33,7 +36,6 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    _players = [NSMutableArray new];
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     lpgr.minimumPressDuration = 0.5;
@@ -45,13 +47,31 @@
     UITapGestureRecognizer *tapDamage = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     tapDamage.delegate = self;
     [self.collectionView addGestureRecognizer:tapDamage];
+    
+   
+    self.gameModel = [NSKeyedUnarchiver unarchiveObjectWithFile:[self dataFilePath]];
+    
+    if (!self.gameModel)
+    {
+        self.gameModel = [GameModel new];
+    }
+    
+    
+    if (!self.gameModel.players)
+    {
+        self.gameModel.players = [NSMutableArray new];
+    }
 
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (!_players.count) {
+    
+    //unarchive
+    
+    if (!self.gameModel.players.count)
+    {
         [self performSegueWithIdentifier:@"ToSettings" sender:self];
     }
 
@@ -60,10 +80,26 @@
 {
     [super viewWillAppear:animated];
     
-    
-    
     [self.collectionView reloadData];
 }
+
+- (NSString *)documentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths firstObject];
+    return documentsDirectory;
+}
+
+- (NSString *)dataFilePath
+{
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"GameModel.plist"];
+}
+
+- (void)savePlayers
+{
+    [NSKeyedArchiver archiveRootObject:self.gameModel toFile:[self dataFilePath]];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -76,28 +112,24 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _players.count;
+    return self.gameModel.players.count;
 }
 
 - (WAPlayerCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    WAPlayer *player = [_players objectAtIndex:indexPath.row];
-    
-    
+    WAPlayer *player = [self.gameModel.players objectAtIndex:indexPath.row];
     
     WAPlayerCell *playerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
     
-    if (_isEDH)
+    if (self.gameModel.formatIsEdh)
     {
-        [playerCell setupCommanderDamageWithPlayerCount:_players.count AndPlayer:player];
+        [playerCell setupCommanderDamageWithPlayerCount:self.gameModel.players.count AndPlayer:player];
     } else {
         [playerCell setupStandardFormatCellsWithPlayer:player];
     }
     
-    
     playerCell.playerName.text = player.name;
     playerCell.playerHealth.text = [NSString stringWithFormat:@"%ld",(long)player.health];
-    
     
     return playerCell;
     
@@ -121,21 +153,22 @@
 
 -(void)resetGameActually
 {
-    for (WAPlayer *player in self.players)
+    for (WAPlayer *player in self.gameModel.players)
     {
-        [player resetPlayerForEDH:self.isEDH];
+        [player resetPlayerForEDH:self.gameModel.formatIsEdh];
     }
     [self.collectionView reloadData];
-    self.gameStarted = NO;
+    
+    self.gameModel.gameInProgress = NO;
 }
 
 - (void)handleTap:(UIGestureRecognizer *)gestureRecognizer
 {
-    self.gameStarted = YES;
+    self.gameModel.gameInProgress = NO;
     CGPoint p = [gestureRecognizer locationInView:self.collectionView];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
     WAPlayerCell *cellTapped = (WAPlayerCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-    WAPlayer *player = self.players[indexPath.row];
+    WAPlayer *player = self.gameModel.players[indexPath.row];
     CGPoint pointInCell = [gestureRecognizer locationInView:cellTapped];
 //    NSLog(@"j: %@",NSStringFromCGPoint(pointInCell));
     
@@ -155,6 +188,7 @@
     playerHealthIncreased += 1;
     cellTapped.playerHealth.text = [NSString stringWithFormat:@"%d",playerHealthIncreased];
     player.health = playerHealthIncreased;
+    [self savePlayers];
     
 }
 
@@ -164,6 +198,7 @@
     playerHealthDecreased -= 1;
     cellTapped.playerHealth.text = [NSString stringWithFormat:@"%d",playerHealthDecreased];
     player.health = playerHealthDecreased;
+    [self savePlayers];
     
 }
 
@@ -171,12 +206,13 @@
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
     {
-        self.gameStarted = YES;
+       
+        self.gameModel.gameInProgress = YES;
         gestureRecognizer.enabled = NO;
         gestureRecognizer.enabled = YES;
         CGPoint p = [gestureRecognizer locationInView:self.collectionView];
         NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
-        WAPlayer *selectedPlayer = self.players[indexPath.row];
+        WAPlayer *selectedPlayer = self.gameModel.players[indexPath.row];
         
         UIView *dimView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
         dimView.backgroundColor = [UIColor blackColor];
@@ -185,12 +221,12 @@
         dimView.userInteractionEnabled = NO;
         [self.view addSubview:dimView];
         
-        if (_isEDH)
+        if (self.gameModel.formatIsEdh)
         {
             self.commanderDamageView = [[WACommanderDamageView alloc] initWithFrame:CGRectMake(15, -320, 290, 344)];
             self.commanderDamageView.alpha = 0.9f;
             
-            [self.commanderDamageView setupCommanderDamageView:_players WithCell:(WAPlayerCell *)[self.collectionView cellForItemAtIndexPath:indexPath] andPlayer:selectedPlayer andWithDimView:dimView];
+            [self.commanderDamageView setupCommanderDamageView:self.gameModel.players WithCell:(WAPlayerCell *)[self.collectionView cellForItemAtIndexPath:indexPath] andPlayer:selectedPlayer andWithDimView:dimView];
             [self.view addSubview:self.commanderDamageView];
             
             [UIView animateWithDuration:.3 animations:^{
@@ -208,6 +244,7 @@
             }];
         }
     }
+    [self savePlayers];
 }
 
 
@@ -226,10 +263,12 @@
 {
     if ([segue.identifier isEqualToString:@"ToSettings"]) {
         WASettingsViewController *settingsController = (WASettingsViewController *)segue.destinationViewController;
-        settingsController.players = self.players;
+        
+        settingsController.gameModel = self.gameModel;
+        settingsController.players = self.gameModel.players;
         settingsController.delegate = self;
-        settingsController.isEDHOn = (_isEDH);
-        settingsController.gameHasStarted = self.gameStarted;
+        settingsController.gameModel.formatIsEdh = self.gameModel.formatIsEdh;
+        settingsController.gameModel.gameInProgress = self.gameModel.gameInProgress;
         
     }
     
@@ -237,18 +276,18 @@
 
 - (void)edhModeChanged
 {
-    if (_isEDH)
+    if (self.gameModel.formatIsEdh)
     {
-        _isEDH = NO;
-        for (WAPlayer *player in self.players)
+        self.gameModel.formatIsEdh = NO;
+        for (WAPlayer *player in self.gameModel.players)
         {
             player.health = 20;
             player.poisonDamageTaken = 0;
         }
         
     } else{
-        _isEDH = YES;
-        for (WAPlayer *player in self.players)
+        self.gameModel.formatIsEdh = YES;
+        for (WAPlayer *player in self.gameModel.players)
         {
             player.health = 40;
             player.poisonDamageTaken = 0;
@@ -256,6 +295,24 @@
     }
 }
 
+- (IBAction)coinFlipButtonPressed:(id)sender
+{
+    UIView *dimView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+    dimView.backgroundColor = [UIColor blackColor];
+    dimView.alpha = 0.7f;
+    dimView.tag = 1111;
+    dimView.userInteractionEnabled = NO;
+    [self.view addSubview:dimView];
+
+    self.coinFlipView = [[WACoinFlipController alloc] initWithFrame:CGRectMake(60, -200, 200, 200)];
+    self.coinFlipView.alpha = 0.9f;
+    [self.coinFlipView setupCoinFlipViewWithDimView:dimView];
+    [self.view addSubview:self.coinFlipView];
+    [UIView animateWithDuration:0.4 animations:^{
+        self.coinFlipView.frame = CGRectMake(60, 200, 200, 200);
+    }];
+    [self savePlayers];
+}
 
 
 

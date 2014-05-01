@@ -25,7 +25,6 @@
 {
     
     self.playerName.text = player.name;
-    player.health = 40;
     self.playerHealth.text = [NSString stringWithFormat:@"%ld",(long)player.health];
     self.poisonDamage.text = [NSString stringWithFormat:@"%ld",(long)player.poisonDamageTaken];
     self.commanderLabels = [NSMutableArray new];
@@ -51,7 +50,6 @@
 - (void)setupStandardFormatCellsWithPlayer:(WAPlayer *)player
 {
     self.playerName.text = player.name;
-    player.health = 20;
     self.playerHealth.text = [NSString stringWithFormat:@"%ld",(long)player.health];
     self.poisonDamage.text = [NSString stringWithFormat:@"%ld",(long)player.poisonDamageTaken];
     self.commanderLabels = [NSMutableArray new];

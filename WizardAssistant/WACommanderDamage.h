@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WACommanderDamage : NSObject
+@interface WACommanderDamage : NSObject <NSCoding>
+
 @property (nonatomic) NSInteger damage;
 
 @end

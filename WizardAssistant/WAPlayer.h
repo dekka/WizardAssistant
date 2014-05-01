@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WAPlayer : NSObject
+@interface WAPlayer : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic) NSInteger health;

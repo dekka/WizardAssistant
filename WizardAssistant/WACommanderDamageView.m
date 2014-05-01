@@ -12,7 +12,7 @@
 #import "WASettingsViewController.h"
 #import "WAPlayer.h"
 #import "WACommanderDamage.h"
-
+#import "GameModel.h"
 
 
 @implementation WACommanderDamageView

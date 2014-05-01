@@ -11,9 +11,6 @@
 
 @interface WAViewController : UIViewController
 
-@property (nonatomic) BOOL isEDH;
-
-
 - (void)damageUpForCell:(WAPlayerCell *)cellTapped andPlayer:(WAPlayer *)player;
 - (void)damageDownForCell:(WAPlayerCell *)cellTapped andPlayer:(WAPlayer *)player;
 

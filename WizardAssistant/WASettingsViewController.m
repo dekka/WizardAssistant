@@ -12,12 +12,14 @@
 #import "WAPlayer.h"
 #import "WAViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "GameModel.h"
 
 
 @interface WASettingsViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) BOOL isEditing;
+
 
 @end
 
@@ -34,15 +36,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.isEDHOn)
+    if (self.gameModel.formatIsEdh)
     {
+        self.gameModel.formatIsEdh = YES;
         self.edhSwitch.On = YES;
     }
     else
     {
+        self.gameModel.formatIsEdh = NO;
         self.edhSwitch.On = NO;
     }
-
+    
     
 }
 
@@ -60,9 +64,9 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (_isEditing) {
-        return MIN(self.players.count, 6);
+        return MIN(self.gameModel.players.count, 6);
     } else {
-        return MIN(self.players.count + 1, 6);
+        return MIN(self.gameModel.players.count + 1, 6);
     }
     
     
@@ -72,9 +76,9 @@
 {
 //    NSLog(@"Selected Row: %d", indexPath.row);
     if (!_isEditing) {
-        if ((indexPath.row == self.players.count) && indexPath.row < 6) {
+        if ((indexPath.row == self.gameModel.players.count) && indexPath.row < 6) {
             WAPlayer *newPlayer = [WAPlayer new];
-            [_players addObject:newPlayer];
+            [self.gameModel.players addObject:newPlayer];
             _isEditing = YES;
             [_collectionView reloadData];
             //        [_collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.players.count inSection:0]]];
@@ -84,7 +88,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == self.players.count && !_isEditing && self.players.count < 6)
+    if (indexPath.row == self.gameModel.players.count && !_isEditing && self.gameModel.players.count < 6)
     {
         WAAddPlayerCell *addPlayerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AddPlayerCell" forIndexPath:indexPath];
         
@@ -96,7 +100,7 @@
     else
     {
         WAEditCell *editCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"EditCell" forIndexPath:indexPath];
-        WAPlayer *player = self.players[indexPath.row];
+        WAPlayer *player = self.gameModel.players[indexPath.row];
         editCell.nameField.text = player.name;
         
         editCell.layer.borderWidth = 1.0f;
@@ -110,7 +114,7 @@
 - (IBAction)removePlayer:(id)sender
 {
     
-    [self.players removeObjectAtIndex:[[[self.collectionView indexPathsForSelectedItems] firstObject]row]];
+    [self.gameModel.players removeObjectAtIndex:[[[self.collectionView indexPathsForSelectedItems] firstObject]row]];
 //    NSLog(@"button pressed");
 //    NSLog(@" %d",self.players.count);
     _isEditing = NO;
@@ -119,7 +123,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    WAPlayer *player = [self.players objectAtIndex:_players.count-1];
+    WAPlayer *player = [self.gameModel.players objectAtIndex:self.gameModel.players.count-1];
     [player setupPlayerWithName:textField.text];
     _isEditing = NO;
     [textField resignFirstResponder];
@@ -143,7 +147,7 @@
 
 - (IBAction)edhSwitchChanged:(id)sender
 {
-    if (self.gameHasStarted)
+    if (self.gameModel.gameInProgress)
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Whoa Playa" message:@"You need to reset your game first" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
         [alertView show];
@@ -160,11 +164,11 @@
 - (IBAction)addFivePlayers:(id)sender
 {
     WAPlayer *newPlayer = [WAPlayer new];
-    [_players addObject:newPlayer];
-    [_players addObject:newPlayer];
-    [_players addObject:newPlayer];
-    [_players addObject:newPlayer];
-    [_players addObject:newPlayer];
+    [self.gameModel.players addObject:newPlayer];
+    [self.gameModel.players addObject:newPlayer];
+    [self.gameModel.players addObject:newPlayer];
+    [self.gameModel.players addObject:newPlayer];
+    [self.gameModel.players addObject:newPlayer];
     [self.collectionView reloadData];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameModel.h"
 
 @protocol WASettingsViewControllerDelegate <NSObject>
 
@@ -19,8 +20,7 @@
 @property (nonatomic) NSInteger numberOfPlayers;
 @property (nonatomic, weak) NSMutableArray *players;
 @property (nonatomic, strong) IBOutlet UISwitch *edhSwitch;
-@property (nonatomic) BOOL isEDHOn;
-@property (nonatomic) BOOL gameHasStarted;
+@property (nonatomic, strong) GameModel *gameModel;
 @property (nonatomic, unsafe_unretained) id <WASettingsViewControllerDelegate> delegate;
 
 

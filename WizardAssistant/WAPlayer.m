@@ -12,6 +12,32 @@
 
 @implementation WAPlayer
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (!self)
+    {
+        return nil;
+    }
+    
+    self.name = [aDecoder decodeObjectForKey:@"name"];
+    self.health = [aDecoder decodeIntegerForKey:@"health"];
+    self.commanderDamages = [aDecoder decodeObjectForKey:@"commanderDamages"];
+    self.poisonDamageTaken = [aDecoder decodeIntegerForKey:@"poisonDamageTaken"];
+    
+    return self;
+    
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeInteger:self.health forKey:@"health"];
+    [aCoder encodeObject:self.commanderDamages forKey:@"commanderDamages"];
+    [aCoder encodeInteger:self.poisonDamageTaken forKey:@"poisonDamageTaken"];
+    
+}
+
 
 - (void)setupPlayerWithName:(NSString *)name
 {

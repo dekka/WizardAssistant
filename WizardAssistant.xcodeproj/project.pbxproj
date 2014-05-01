@@ -14,6 +14,8 @@
 		0067C749191177A100779BD8 /* PoisonDamage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0067C748191177A100779BD8 /* PoisonDamage.xib */; };
 		0067C74C1911B18500779BD8 /* WACommanderDamage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0067C74B1911B18500779BD8 /* WACommanderDamage.m */; };
 		0067C7521912AB8800779BD8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0067C7511912AB8800779BD8 /* QuartzCore.framework */; };
+		0067C7551912B1B100779BD8 /* WACoinFlipController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0067C7541912B1B100779BD8 /* WACoinFlipController.m */; };
+		0067C7591912B1DA00779BD8 /* CoinFlipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0067C7581912B1DA00779BD8 /* CoinFlipView.xib */; };
 		006DC7E019057A420031B76E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006DC7DF19057A420031B76E /* Foundation.framework */; };
 		006DC7E219057A420031B76E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006DC7E119057A420031B76E /* CoreGraphics.framework */; };
 		006DC7E419057A420031B76E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006DC7E319057A420031B76E /* UIKit.framework */; };
@@ -33,6 +35,7 @@
 		0073A422190B146A0021F118 /* WASettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073A421190B146A0021F118 /* WASettingsViewController.m */; };
 		0073A425190B18DF0021F118 /* WAEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073A424190B18DF0021F118 /* WAEditCell.m */; };
 		0073A428190B18E90021F118 /* WAAddPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073A427190B18E90021F118 /* WAAddPlayerCell.m */; };
+		00C1D57B1912D8E900F03C7E /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1D57A1912D8E900F03C7E /* GameModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		0067C74A1911B18500779BD8 /* WACommanderDamage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WACommanderDamage.h; sourceTree = "<group>"; };
 		0067C74B1911B18500779BD8 /* WACommanderDamage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WACommanderDamage.m; sourceTree = "<group>"; };
 		0067C7511912AB8800779BD8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0067C7531912B1B100779BD8 /* WACoinFlipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WACoinFlipController.h; sourceTree = "<group>"; };
+		0067C7541912B1B100779BD8 /* WACoinFlipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WACoinFlipController.m; sourceTree = "<group>"; };
+		0067C7581912B1DA00779BD8 /* CoinFlipView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CoinFlipView.xib; path = ../CoinFlipView.xib; sourceTree = "<group>"; };
 		006DC7DC19057A420031B76E /* WizardAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizardAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		006DC7DF19057A420031B76E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		006DC7E119057A420031B76E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -85,6 +91,8 @@
 		0073A424190B18DF0021F118 /* WAEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAEditCell.m; sourceTree = "<group>"; };
 		0073A426190B18E90021F118 /* WAAddPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAddPlayerCell.h; sourceTree = "<group>"; };
 		0073A427190B18E90021F118 /* WAAddPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAddPlayerCell.m; sourceTree = "<group>"; };
+		00C1D5791912D8E900F03C7E /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
+		00C1D57A1912D8E900F03C7E /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,12 +174,17 @@
 				0073A421190B146A0021F118 /* WASettingsViewController.m */,
 				006DC7F719057A420031B76E /* WAViewController.h */,
 				006DC7F819057A420031B76E /* WAViewController.m */,
+				0067C7531912B1B100779BD8 /* WACoinFlipController.h */,
+				0067C7541912B1B100779BD8 /* WACoinFlipController.m */,
+				0067C7581912B1DA00779BD8 /* CoinFlipView.xib */,
 				001CC16C190EFC91009B717B /* WACommanderDamageView.h */,
 				001CC16D190EFC91009B717B /* WACommanderDamageView.m */,
 				001CC16F190EFF86009B717B /* CommanderDamage.xib */,
 				0067C7451911776D00779BD8 /* WAPoisonDamageView.h */,
 				0067C7461911776D00779BD8 /* WAPoisonDamageView.m */,
 				0067C748191177A100779BD8 /* PoisonDamage.xib */,
+				00C1D5791912D8E900F03C7E /* GameModel.h */,
+				00C1D57A1912D8E900F03C7E /* GameModel.m */,
 			);
 			path = WizardAssistant;
 			sourceTree = "<group>";
@@ -288,6 +301,7 @@
 				006DC7FB19057A420031B76E /* Images.xcassets in Resources */,
 				006DC7F319057A420031B76E /* Main_iPhone.storyboard in Resources */,
 				006DC7EA19057A420031B76E /* InfoPlist.strings in Resources */,
+				0067C7591912B1DA00779BD8 /* CoinFlipView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,10 +321,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0073A428190B18E90021F118 /* WAAddPlayerCell.m in Sources */,
+				00C1D57B1912D8E900F03C7E /* GameModel.m in Sources */,
 				001CC16E190EFC91009B717B /* WACommanderDamageView.m in Sources */,
 				006DC7F919057A420031B76E /* WAViewController.m in Sources */,
 				0067C7471911776D00779BD8 /* WAPoisonDamageView.m in Sources */,
 				001CC16B190EC614009B717B /* WAPlayer.m in Sources */,
+				0067C7551912B1B100779BD8 /* WACoinFlipController.m in Sources */,
 				0073A425190B18DF0021F118 /* WAEditCell.m in Sources */,
 				006DC7F019057A420031B76E /* WAAppDelegate.m in Sources */,
 				0073A41F190AF50D0021F118 /* WAPlayerCell.m in Sources */,
