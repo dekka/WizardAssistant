@@ -36,6 +36,7 @@
 		0073A425190B18DF0021F118 /* WAEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073A424190B18DF0021F118 /* WAEditCell.m */; };
 		0073A428190B18E90021F118 /* WAAddPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0073A427190B18E90021F118 /* WAAddPlayerCell.m */; };
 		00C1D57B1912D8E900F03C7E /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1D57A1912D8E900F03C7E /* GameModel.m */; };
+		00C1D57E1912F48400F03C7E /* PlayerCelPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C1D57D1912F48400F03C7E /* PlayerCelPanelView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,8 @@
 		0073A427190B18E90021F118 /* WAAddPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAddPlayerCell.m; sourceTree = "<group>"; };
 		00C1D5791912D8E900F03C7E /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
 		00C1D57A1912D8E900F03C7E /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
+		00C1D57C1912F48400F03C7E /* PlayerCelPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCelPanelView.h; sourceTree = "<group>"; };
+		00C1D57D1912F48400F03C7E /* PlayerCelPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCelPanelView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +173,8 @@
 				0067C74B1911B18500779BD8 /* WACommanderDamage.m */,
 				0073A41D190AF50D0021F118 /* WAPlayerCell.h */,
 				0073A41E190AF50D0021F118 /* WAPlayerCell.m */,
+				00C1D57C1912F48400F03C7E /* PlayerCelPanelView.h */,
+				00C1D57D1912F48400F03C7E /* PlayerCelPanelView.m */,
 				0073A420190B146A0021F118 /* WASettingsViewController.h */,
 				0073A421190B146A0021F118 /* WASettingsViewController.m */,
 				006DC7F719057A420031B76E /* WAViewController.h */,
@@ -323,6 +328,7 @@
 				0073A428190B18E90021F118 /* WAAddPlayerCell.m in Sources */,
 				00C1D57B1912D8E900F03C7E /* GameModel.m in Sources */,
 				001CC16E190EFC91009B717B /* WACommanderDamageView.m in Sources */,
+				00C1D57E1912F48400F03C7E /* PlayerCelPanelView.m in Sources */,
 				006DC7F919057A420031B76E /* WAViewController.m in Sources */,
 				0067C7471911776D00779BD8 /* WAPoisonDamageView.m in Sources */,
 				001CC16B190EC614009B717B /* WAPlayer.m in Sources */,
