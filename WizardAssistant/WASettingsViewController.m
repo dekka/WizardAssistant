@@ -92,7 +92,8 @@
     {
         WAAddPlayerCell *addPlayerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AddPlayerCell" forIndexPath:indexPath];
         
-        addPlayerCell.backgroundColor = [UIColor redColor];
+        addPlayerCell.layer.borderWidth = 2.0f;
+        addPlayerCell.layer.borderColor = [UIColor redColor].CGColor;
         
         return addPlayerCell;
         
@@ -103,7 +104,7 @@
         WAPlayer *player = self.gameModel.players[indexPath.row];
         editCell.nameField.text = player.name;
         
-        editCell.layer.borderWidth = 1.0f;
+        editCell.layer.borderWidth = 2.0f;
         editCell.layer.borderColor = [UIColor blueColor].CGColor;
         
         return editCell;

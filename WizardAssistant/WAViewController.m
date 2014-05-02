@@ -15,7 +15,7 @@
 #import "WACoinFlipController.h"
 #import "GameModel.h"
 
-@interface WAViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, WASettingsViewControllerDelegate, UIAlertViewDelegate, NSCoding>
+@interface WAViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, WASettingsViewControllerDelegate, UIAlertViewDelegate, NSCoding,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) WAPlayerCell *playerCell;
@@ -25,6 +25,8 @@
 @property (nonatomic, strong) WAPoisonDamageView *poisonDamageView;
 @property (nonatomic, strong) WACoinFlipController *coinFlipView;
 @property (nonatomic, strong) GameModel *gameModel;
+@property (nonatomic) BOOL isSmallerScreenSize;
+
 
 @end
 
@@ -33,6 +35,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    if (self.view.frame.size.height < 481) {
+//        self.isSmallerScreenSize = YES;
+//    }
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -110,6 +116,8 @@
     return 1;
 }
 
+
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.gameModel.players.count;
@@ -119,8 +127,14 @@
 {
     WAPlayer *player = [self.gameModel.players objectAtIndex:indexPath.row];
     
-    WAPlayerCell *playerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
+    WAPlayerCell *playerCell;
     
+//    if (self.isSmallerScreenSize) {
+//        playerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SmallerPlayerCell" forIndexPath:indexPath];
+//    } else {
+    
+        playerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
+//    }
     if (self.gameModel.formatIsEdh)
     {
         [playerCell setupCommanderDamageWithPlayerCount:self.gameModel.players.count AndPlayer:player atIndexPath:indexPath];
@@ -315,10 +329,33 @@
     [self.coinFlipView setupCoinFlipViewWithDimView:dimView];
     [self.view addSubview:self.coinFlipView];
     [UIView animateWithDuration:0.4 animations:^{
-        self.coinFlipView.frame = CGRectMake(60, 200, 200, 200);
+        self.coinFlipView.frame = CGRectMake(60, 100, 200, 200);
     }];
     [self savePlayers];
 }
+
+- (IBAction)diceButtonPressed:(id)sender
+{
+//    NSMutableArray *randomArray = [NSMutableArray new];
+//    [randomArray addObjectsFromArray:self.gameModel.players];
+    NSInteger j = arc4random_uniform(self.gameModel.players.count);
+    WAPlayer *player = [self.gameModel.players objectAtIndex:j];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Random Player is..." message:[NSString stringWithFormat:@"%@!!!",player.name] delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
+    [alertView show];
+
+}
+
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (self.isSmallerScreenSize)
+//    {
+//        return CGSizeMake(150,130);
+//    }
+//    else
+//    {
+//        return CGSizeMake(150, 148);
+//    }
+//}
 
 
 
