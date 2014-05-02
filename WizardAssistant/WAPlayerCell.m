@@ -67,6 +67,8 @@
         label.hidden = YES;
     }
     self.poisonDamage.hidden = YES;
+    self.panelView.colorScheme = indexPath.row;
+
 
 }
 

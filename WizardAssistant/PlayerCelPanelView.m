@@ -55,6 +55,7 @@
             self.bottomColor = [UIColor colorWithRed:0.941 green:0.745 blue:0.420 alpha:1];
             break;
     }
+    [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect
