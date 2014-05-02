@@ -7,9 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-
+#import "WAPlayer.h"
 @interface WizardAssistantTests : XCTestCase
 
+@property (nonatomic, strong) WAPlayer *player;
 @end
 
 @implementation WizardAssistantTests
@@ -17,18 +18,39 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    _player = [[WAPlayer alloc] init];
 }
+
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    _player = nil;
+    
     [super tearDown];
+}
+
+- (void)testPlayerHealthAfterChangingGameModeToEDH
+{
+    [_player resetPlayerForEDH:YES];
+    
+    XCTAssertEqual(_player.health, 40, @"Players should have 40 health when reset to EDH mode");
+}
+
+- (void)testPlayerHealthAfterChangingGameModeToStandard
+{
+    [_player resetPlayerForEDH:NO];
+    
+    XCTAssertEqual(_player.health, 20, @"Players should have 20 health when reset to Standard mode");
+    
 }
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSString *testString = @"Reed";
+    NSString *testStringTwo = @"Sweeney";
+    testStringTwo = testString;
+    XCTAssertEqual(testString, testStringTwo, @"these two strings should be equal");
+
 }
 
 @end
