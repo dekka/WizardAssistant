@@ -38,12 +38,20 @@
     
     //NSLog(@"commanders: %d",self.commanderLabels.count);
 
+    for (UILabel *label in self.commanderLabels) {
+        label.hidden = YES;
+        label.layer.masksToBounds = YES;
+        label.layer.cornerRadius = 8.0f;
+    }
+    
     for (int i = 0; i < playerCount; i++) {
         UILabel *label = [self.commanderLabels objectAtIndex:i];
         label.hidden = NO;
         label.text = [NSString stringWithFormat:@"%ld",(long)[player.commanderDamages[i] damage]];
     }
     self.poisonDamage.hidden = YES;
+    self.poisonDamage.layer.masksToBounds = YES;
+    self.poisonDamage.layer.cornerRadius = 10.0;
     
     self.panelView.colorScheme = indexPath.row;
 }
@@ -67,6 +75,8 @@
         label.hidden = YES;
     }
     self.poisonDamage.hidden = YES;
+    self.poisonDamage.layer.masksToBounds = YES;
+    self.poisonDamage.layer.cornerRadius = 10.0;
     self.panelView.colorScheme = indexPath.row;
 
 

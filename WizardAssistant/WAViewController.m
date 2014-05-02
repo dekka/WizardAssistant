@@ -225,6 +225,8 @@
         {
             self.commanderDamageView = [[WACommanderDamageView alloc] initWithFrame:CGRectMake(15, -320, 290, 344)];
             self.commanderDamageView.alpha = 0.9f;
+            self.commanderDamageView.layer.masksToBounds = YES;
+            self.commanderDamageView.layer.cornerRadius = 10.0;
             
             [self.commanderDamageView setupCommanderDamageView:self.gameModel.players WithCell:(WAPlayerCell *)[self.collectionView cellForItemAtIndexPath:indexPath] andPlayer:selectedPlayer andWithDimView:dimView];
             [self.view addSubview:self.commanderDamageView];
@@ -236,6 +238,8 @@
         {
             self.poisonDamageView = [[WAPoisonDamageView alloc] initWithFrame:CGRectMake(15, -180, 290, 180)];
             self.poisonDamageView.alpha = 0.9f;
+            self.poisonDamageView.layer.masksToBounds = YES;
+            self.poisonDamageView.layer.cornerRadius = 10.0;
             
             [self.poisonDamageView setupPoisonDamageViewWithCell:(WAPlayerCell *)[self.collectionView cellForItemAtIndexPath:indexPath] andPlayer:selectedPlayer andWithDimView:dimView];
             [self.view addSubview:self.poisonDamageView];
@@ -306,6 +310,8 @@
 
     self.coinFlipView = [[WACoinFlipController alloc] initWithFrame:CGRectMake(60, -200, 200, 200)];
     self.coinFlipView.alpha = 0.9f;
+    self.coinFlipView.layer.masksToBounds = YES;
+    self.coinFlipView.layer.cornerRadius = 10.0;
     [self.coinFlipView setupCoinFlipViewWithDimView:dimView];
     [self.view addSubview:self.coinFlipView];
     [UIView animateWithDuration:0.4 animations:^{
