@@ -39,10 +39,15 @@
 }
 
 
-- (void)setupPlayerWithName:(NSString *)name
+- (void)setupPlayerWithName:(NSString *)name AndFormat:(BOOL)isEdh
 {
     self.name = name;
-    self.health = 20;
+    if (isEdh)
+    {
+        self.health = 40;
+    } else {
+        self.health = 20;
+    }
     self.poisonDamageTaken = 0;
     self.commanderDamages = [[NSMutableArray alloc] initWithObjects:[WACommanderDamage new], [WACommanderDamage new], [WACommanderDamage new], [WACommanderDamage new], [WACommanderDamage new], [WACommanderDamage new], nil];
     

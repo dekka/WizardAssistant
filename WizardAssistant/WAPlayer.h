@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *commanderDamages;
 @property (nonatomic) NSInteger poisonDamageTaken;
 
-- (void)setupPlayerWithName:(NSString *)name;
+- (void)setupPlayerWithName:(NSString *)name AndFormat:(BOOL)isEdh;
 - (void)resetPlayerForEDH:(BOOL)isEDH;
 
 @end

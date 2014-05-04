@@ -19,7 +19,7 @@
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) BOOL isEditing;
-
+@property (nonatomic, weak) WAEditCell *editCell;
 
 @end
 
@@ -81,7 +81,8 @@
             [self.gameModel.players addObject:newPlayer];
             _isEditing = YES;
             [_collectionView reloadData];
-            //        [_collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.players.count inSection:0]]];
+            self.editCell = (id)[self.collectionView cellForItemAtIndexPath:indexPath];
+            [self.editCell.nameField becomeFirstResponder];
         }
     }
 }
@@ -125,7 +126,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     WAPlayer *player = [self.gameModel.players objectAtIndex:self.gameModel.players.count-1];
-    [player setupPlayerWithName:textField.text];
+    [player setupPlayerWithName:textField.text AndFormat:self.gameModel.formatIsEdh];
     _isEditing = NO;
     [textField resignFirstResponder];
     

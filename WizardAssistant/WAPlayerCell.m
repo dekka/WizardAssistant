@@ -10,7 +10,9 @@
 #import "WACommanderDamage.h"
 
 
+
 @implementation WAPlayerCell
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,14 +29,8 @@
     self.playerName.text = player.name;
     self.playerHealth.text = [NSString stringWithFormat:@"%ld",(long)player.health];
     self.poisonDamage.text = [NSString stringWithFormat:@"%ld",(long)player.poisonDamageTaken];
-    self.commanderLabels = [NSMutableArray new];
     
-    [self.commanderLabels addObject:self.commanderOne];
-    [self.commanderLabels addObject:self.commanderTwo];
-    [self.commanderLabels addObject:self.commanderThree];
-    [self.commanderLabels addObject:self.commanderFour];
-    [self.commanderLabels addObject:self.commanderFive];
-    [self.commanderLabels addObject:self.commanderSix];
+    [self setupCommanderDamageLabels];
     
     //NSLog(@"commanders: %d",self.commanderLabels.count);
 
@@ -49,9 +45,8 @@
         label.hidden = NO;
         label.text = [NSString stringWithFormat:@"%ld",(long)[player.commanderDamages[i] damage]];
     }
-    self.poisonDamage.hidden = YES;
-    self.poisonDamage.layer.masksToBounds = YES;
-    self.poisonDamage.layer.cornerRadius = 10.0;
+    
+    [self setupPoisonDamageLabels];
     
     self.panelView.colorScheme = indexPath.row;
 }
@@ -61,6 +56,34 @@
     self.playerName.text = player.name;
     self.playerHealth.text = [NSString stringWithFormat:@"%ld",(long)player.health];
     self.poisonDamage.text = [NSString stringWithFormat:@"%ld",(long)player.poisonDamageTaken];
+    
+    [self setupCommanderDamageLabels];
+    
+    for (UILabel *label in self.commanderLabels)
+    {
+        label.hidden = YES;
+    }
+    
+    [self setupPoisonDamageLabels];
+    
+    self.panelView.colorScheme = indexPath.row;
+
+
+}
+
+- (void)setupPoisonDamageLabels
+{
+    if (self.gameModel.gameInProgress && ![self.poisonDamage.text isEqualToString:@"0"]) {
+        self.poisonDamage.hidden = NO;
+    } else  if (!self.gameModel.gameInProgress || [self.poisonDamage.text isEqualToString:@"0"]){
+        self.poisonDamage.hidden = YES;
+    }
+    self.poisonDamage.layer.masksToBounds = YES;
+    self.poisonDamage.layer.cornerRadius = 10.0;
+}
+
+- (void)setupCommanderDamageLabels
+{
     self.commanderLabels = [NSMutableArray new];
     
     [self.commanderLabels addObject:self.commanderOne];
@@ -69,17 +92,8 @@
     [self.commanderLabels addObject:self.commanderFour];
     [self.commanderLabels addObject:self.commanderFive];
     [self.commanderLabels addObject:self.commanderSix];
+
     
-    for (UILabel *label in self.commanderLabels)
-    {
-        label.hidden = YES;
-    }
-    self.poisonDamage.hidden = YES;
-    self.poisonDamage.layer.masksToBounds = YES;
-    self.poisonDamage.layer.cornerRadius = 10.0;
-    self.panelView.colorScheme = indexPath.row;
-
-
 }
 
 @end

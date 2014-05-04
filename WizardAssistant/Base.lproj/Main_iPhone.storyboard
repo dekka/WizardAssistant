@@ -161,7 +161,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOt-Io-5Db">
-                                                    <rect key="frame" x="54" y="128" width="23" height="23"/>
+                                                    <rect key="frame" x="86" y="128" width="23" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -190,7 +190,7 @@
                                             <constraint firstItem="8US-zD-6Uh" firstAttribute="trailing" secondItem="Rtf-h2-CI6" secondAttribute="trailing" id="GpP-i0-eol"/>
                                             <constraint firstItem="W7q-EE-Slo" firstAttribute="top" secondItem="qUM-xE-JyG" secondAttribute="bottom" constant="1" id="Hoy-5d-UHX"/>
                                             <constraint firstItem="M7m-wj-DnU" firstAttribute="top" secondItem="va7-LT-8Ic" secondAttribute="top" id="KhB-pj-PtQ"/>
-                                            <constraint firstItem="gOt-Io-5Db" firstAttribute="leading" secondItem="83r-hB-9eV" secondAttribute="trailing" constant="27" id="L3g-Lg-zFt"/>
+                                            <constraint firstItem="gOt-Io-5Db" firstAttribute="leading" secondItem="83r-hB-9eV" secondAttribute="trailing" constant="59" id="L3g-Lg-zFt"/>
                                             <constraint firstItem="83r-hB-9eV" firstAttribute="top" secondItem="Rtf-h2-CI6" secondAttribute="bottom" constant="1" id="Nfb-Nn-9Sv"/>
                                             <constraint firstAttribute="bottom" secondItem="M7m-wj-DnU" secondAttribute="bottom" constant="-12" id="NgE-0o-1hH"/>
                                             <constraint firstItem="kgA-eR-Pcs" firstAttribute="top" secondItem="W7q-EE-Slo" secondAttribute="bottom" constant="1" id="S1P-3s-6VJ"/>
@@ -202,10 +202,10 @@
                                             <constraint firstAttribute="bottom" secondItem="gOt-Io-5Db" secondAttribute="bottom" constant="-3" id="faR-IM-4ts"/>
                                             <constraint firstItem="Rtf-h2-CI6" firstAttribute="top" secondItem="8US-zD-6Uh" secondAttribute="bottom" constant="1" id="fbz-nb-l0z"/>
                                             <constraint firstItem="ztX-eo-rjV" firstAttribute="top" secondItem="va7-LT-8Ic" secondAttribute="top" constant="7" id="gBl-Iz-UAz"/>
-                                            <constraint firstAttribute="trailing" secondItem="gOt-Io-5Db" secondAttribute="trailing" constant="73" id="jCU-ec-TVB"/>
+                                            <constraint firstAttribute="trailing" secondItem="gOt-Io-5Db" secondAttribute="trailing" constant="41" id="jCU-ec-TVB"/>
                                             <constraint firstAttribute="bottom" secondItem="uCY-Fy-9js" secondAttribute="bottom" constant="-2" id="ken-Mh-3tm"/>
                                             <constraint firstItem="uCY-Fy-9js" firstAttribute="top" secondItem="M7m-wj-DnU" secondAttribute="top" id="qJO-3G-fMp"/>
-                                            <constraint firstItem="gOt-Io-5Db" firstAttribute="centerX" secondItem="uCY-Fy-9js" secondAttribute="centerX" id="tgg-K9-JF5"/>
+                                            <constraint firstItem="gOt-Io-5Db" firstAttribute="centerX" secondItem="uCY-Fy-9js" secondAttribute="centerX" constant="32.5" id="tgg-K9-JF5"/>
                                             <constraint firstItem="8US-zD-6Uh" firstAttribute="leading" secondItem="kgA-eR-Pcs" secondAttribute="leading" id="tsW-4D-bv3"/>
                                             <constraint firstItem="83r-hB-9eV" firstAttribute="trailing" secondItem="Rtf-h2-CI6" secondAttribute="trailing" id="urc-hN-5Uj"/>
                                             <constraint firstItem="M7m-wj-DnU" firstAttribute="leading" secondItem="va7-LT-8Ic" secondAttribute="leading" id="xPx-gB-muv"/>
@@ -418,7 +418,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rdz-X4-GA9">
                                         <rect key="frame" x="226" y="12" width="74" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Back">
+                                        <state key="normal" title="Play">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -472,7 +472,7 @@
                                                     <rect key="frame" x="20" y="20" width="110" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="yzO-zP-yW5" id="oJC-7g-fwm"/>
                                                     </connections>

@@ -15,7 +15,7 @@
 #import "WACoinFlipController.h"
 #import "GameModel.h"
 
-@interface WAViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, WASettingsViewControllerDelegate, UIAlertViewDelegate, NSCoding,UICollectionViewDelegateFlowLayout>
+@interface WAViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate, WASettingsViewControllerDelegate, UIAlertViewDelegate, NSCoding, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) WAPlayerCell *playerCell;
@@ -151,7 +151,7 @@
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0)
+    if (buttonIndex == 0 && alertView.tag != 1)
     {
         [self resetGameActually];
     }
@@ -172,13 +172,14 @@
         [player resetPlayerForEDH:self.gameModel.formatIsEdh];
     }
     [self.collectionView reloadData];
+    self.playerCell.poisonDamage.hidden = YES;
     
     self.gameModel.gameInProgress = NO;
 }
 
 - (void)handleTap:(UIGestureRecognizer *)gestureRecognizer
 {
-    self.gameModel.gameInProgress = NO;
+    self.gameModel.gameInProgress = YES;
     CGPoint p = [gestureRecognizer locationInView:self.collectionView];
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
     WAPlayerCell *cellTapped = (WAPlayerCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
@@ -336,12 +337,15 @@
 
 - (IBAction)diceButtonPressed:(id)sender
 {
-//    NSMutableArray *randomArray = [NSMutableArray new];
-//    [randomArray addObjectsFromArray:self.gameModel.players];
-    NSInteger j = arc4random_uniform(self.gameModel.players.count);
+    NSMutableArray *randomArray = [NSMutableArray new];
+    [randomArray addObjectsFromArray:self.gameModel.players];
+    NSInteger j = arc4random_uniform(randomArray.count);
     WAPlayer *player = [self.gameModel.players objectAtIndex:j];
+    
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Random Player is..." message:[NSString stringWithFormat:@"%@!!!",player.name] delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
+    alertView.tag = 1;
     [alertView show];
+    [self savePlayers];
 
 }
 

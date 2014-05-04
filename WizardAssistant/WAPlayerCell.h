@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "WAPlayer.h"
 #import "PlayerCelPanelView.h"
+#import "GameModel.h"
+
 
 @interface WAPlayerCell : UICollectionViewCell
 
@@ -22,7 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *commanderFive;
 @property (weak, nonatomic) IBOutlet UILabel *commanderSix;
 @property (nonatomic, strong) NSMutableArray *commanderLabels;
-@property (weak, nonatomic) IBOutlet UILabel *poisonDamage;
+@property (strong, nonatomic) IBOutlet UILabel *poisonDamage;
+@property (nonatomic, strong) GameModel *gameModel;
 
 - (void)setupCommanderDamageWithPlayerCount:(int)playerCount AndPlayer:(WAPlayer *)player atIndexPath:(NSIndexPath *)indexPath;
 - (void)setupStandardFormatCellsWithPlayer:(WAPlayer *)player atIndexPath:(NSIndexPath *)indexPath;
