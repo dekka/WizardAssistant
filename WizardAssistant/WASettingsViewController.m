@@ -30,24 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (self.gameModel.formatIsEdh)
-    {
-        self.gameModel.formatIsEdh = YES;
-        self.edhSwitch.On = YES;
-    }
-    else
-    {
-        self.gameModel.formatIsEdh = NO;
-        self.edhSwitch.On = NO;
-    }
-    
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-
+    [_edhSwitch setOn:_gameModel.formatIsEdh animated:NO];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -57,37 +40,23 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (_isEditing) {
-        return MIN(self.gameModel.players.count, 6);
-    } else {
-        return MIN(self.gameModel.players.count + 1, 6);
-    }
-    
-    
+    return MIN(_gameModel.players.count + !_isEditing, 6);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"Selected Row: %d", indexPath.row);
-    if (!_isEditing) {
-        if ((indexPath.row == self.gameModel.players.count) && indexPath.row < 6) {
-
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Name" message:@"Enter a name for this player" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"Done", nil];
-           
-            alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-            
-            self.playerNameTextField = [alertView textFieldAtIndex:0];
-            
-            [alertView show];
-            
-            _isEditing = YES;
-            //[_collectionView reloadData];
-            //self.editCell = (WAEditCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-            
-            
-            
-            //[self.editCell.nameField becomeFirstResponder];
-        }
+    if ([[[self collectionView:collectionView cellForItemAtIndexPath:indexPath] reuseIdentifier] isEqualToString:@"AddPlayerCell"])
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Name" message:@"Enter a name for this player" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"Done", nil];
+        
+        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+        
+        self.playerNameTextField = [alertView textFieldAtIndex:0];
+        
+        [alertView show];
+        
+        _isEditing = YES;
+        
     }
 }
 
