@@ -15,23 +15,17 @@
 #import "GameModel.h"
 
 
-@interface WASettingsViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate>
+@interface WASettingsViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) BOOL isEditing;
 @property (nonatomic, weak) WAEditCell *editCell;
+@property (nonatomic, strong) UITextField *playerNameTextField;
 
 @end
 
 @implementation WASettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -77,13 +71,22 @@
 //    NSLog(@"Selected Row: %d", indexPath.row);
     if (!_isEditing) {
         if ((indexPath.row == self.gameModel.players.count) && indexPath.row < 6) {
-            WAPlayer *newPlayer = [WAPlayer new];
-            [self.gameModel.players addObject:newPlayer];
-            _isEditing = YES;
-            [_collectionView reloadData];
-            self.editCell = (WAEditCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Name" message:@"Enter a name for this player" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"Done", nil];
+           
+            alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
             
-            [self.editCell.nameField becomeFirstResponder];
+            self.playerNameTextField = [alertView textFieldAtIndex:0];
+            
+            [alertView show];
+            
+            _isEditing = YES;
+            //[_collectionView reloadData];
+            //self.editCell = (WAEditCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+            
+            
+            
+            //[self.editCell.nameField becomeFirstResponder];
         }
     }
 }
@@ -97,6 +100,7 @@
         addPlayerCell.layer.borderWidth = 2.0f;
         addPlayerCell.layer.borderColor = [UIColor redColor].CGColor;
         
+        
         return addPlayerCell;
         
     }
@@ -105,6 +109,7 @@
         WAEditCell *editCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"EditCell" forIndexPath:indexPath];
         WAPlayer *player = self.gameModel.players[indexPath.row];
         editCell.nameField.text = player.name;
+        editCell.nameField.tag = indexPath.row;
         
         editCell.layer.borderWidth = 2.0f;
         editCell.layer.borderColor = [UIColor blueColor].CGColor;
@@ -118,26 +123,25 @@
 
 - (IBAction)removePlayer:(id)sender
 {
-   
-    
     UIButton *buttonPressed = (UIButton *)sender;
-    
     [self.gameModel.players removeObjectAtIndex:buttonPressed.tag];
-//    NSLog(@"button pressed");
-//    NSLog(@" %d",self.players.count);
+    
     _isEditing = NO;
+    
     [self.collectionView reloadData];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
-    WAPlayer *player = [self.gameModel.players objectAtIndex:self.gameModel.players.count-1];
-    [player setupPlayerWithName:textField.text AndFormat:self.gameModel.formatIsEdh];
+    WAPlayer *player = [self.gameModel.players objectAtIndex:textField.tag];
+    player.name = textField.text;
+
     _isEditing = NO;
+    
     [textField resignFirstResponder];
     
     [_collectionView reloadData];
+    
     return YES;
     
 }
@@ -150,7 +154,6 @@
 
 - (IBAction)handleExit:(id)sender
 {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -162,24 +165,25 @@
         [alertView show];
         [self.edhSwitch setOn:(!self.edhSwitch.on) animated:YES];
     }
-    else
-    {
-    [self.delegate edhModeChanged];
+    else {
+        [self.delegate edhModeChanged];
     }
-    
-    
 }
 
-- (IBAction)addFivePlayers:(id)sender
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    WAPlayer *newPlayer = [WAPlayer new];
-    [self.gameModel.players addObject:newPlayer];
-    [self.gameModel.players addObject:newPlayer];
-    [self.gameModel.players addObject:newPlayer];
-    [self.gameModel.players addObject:newPlayer];
-    [self.gameModel.players addObject:newPlayer];
-    [self.collectionView reloadData];
+   
+     if (buttonIndex == 1)
+     {
+         WAPlayer *player = [[WAPlayer alloc] init];
+         [player setupPlayerWithName:self.playerNameTextField.text AndFormat:self.gameModel.formatIsEdh];
+         [self.gameModel.players addObject:player];
+         [self.collectionView reloadData];
+         _isEditing = NO;
+     }
 }
+
+
 
 
 

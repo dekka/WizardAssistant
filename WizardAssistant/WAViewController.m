@@ -155,7 +155,7 @@
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0 && alertView.tag != 1)
+    if (buttonIndex == 0 && alertView.tag == 1)
     {
         [self resetGameActually];
     }
@@ -165,6 +165,8 @@
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Whoa Bro" message:@"Are you sure you want to reset the game?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
     alertView.delegate = self;
+    alertView.tag = 1;
+
 
     [alertView show];
 }
@@ -359,7 +361,6 @@
     WAPlayer *player = [self.gameModel.players objectAtIndex:j];
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Random Player is..." message:[NSString stringWithFormat:@"%@!!!",player.name] delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
-    alertView.tag = 1;
     [alertView show];
     [self savePlayers];
 

@@ -207,11 +207,7 @@
 				00C1D57C1912F48400F03C7E /* PlayerCelPanelView.h */,
 				00C1D57D1912F48400F03C7E /* PlayerCelPanelView.m */,
 				0067C7581912B1DA00779BD8 /* CoinFlipView.xib */,
-				001CC16C190EFC91009B717B /* WACommanderDamageView.h */,
-				001CC16D190EFC91009B717B /* WACommanderDamageView.m */,
 				001CC16F190EFF86009B717B /* CommanderDamage.xib */,
-				0067C7451911776D00779BD8 /* WAPoisonDamageView.h */,
-				0067C7461911776D00779BD8 /* WAPoisonDamageView.m */,
 				0067C748191177A100779BD8 /* PoisonDamage.xib */,
 				0073A423190B18DF0021F118 /* WAEditCell.h */,
 				0073A424190B18DF0021F118 /* WAEditCell.m */,
@@ -243,6 +239,10 @@
 				006DC7F819057A420031B76E /* WAViewController.m */,
 				0067C7531912B1B100779BD8 /* WACoinFlipController.h */,
 				0067C7541912B1B100779BD8 /* WACoinFlipController.m */,
+				0067C7451911776D00779BD8 /* WAPoisonDamageView.h */,
+				0067C7461911776D00779BD8 /* WAPoisonDamageView.m */,
+				001CC16C190EFC91009B717B /* WACommanderDamageView.h */,
+				001CC16D190EFC91009B717B /* WACommanderDamageView.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
