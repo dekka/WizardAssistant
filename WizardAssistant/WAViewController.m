@@ -189,25 +189,15 @@
     WAPlayerCell *cellTapped = (WAPlayerCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
     WAPlayer *player = self.gameModel.players[indexPath.row];
     CGPoint pointInCell = [gestureRecognizer locationInView:cellTapped];
-//    NSLog(@"j: %@",NSStringFromCGPoint(pointInCell));
-    
-    if (self.isSmallerScreenSize) {
-        if (pointInCell.y < 65) {
+
+        if (pointInCell.y < cellTapped.frame.size.height/2) {
             [self damageUpForCell:cellTapped andPlayer:player];
 
-        } else if (pointInCell.y > 66) {
+        } else if (pointInCell.y > cellTapped.frame.size.height/2) {
             [self damageDownForCell:cellTapped andPlayer:player];
 
         }
-    } else {
-    if (pointInCell.y < 75)
-    {
-        [self damageUpForCell:cellTapped andPlayer:player];
-    } else if (pointInCell.y > 76)
-    {
-        [self damageDownForCell:cellTapped andPlayer:player];
-    }
-    }
+
 }
 
 - (void)damageUpForCell:(WAPlayerCell *)cellTapped andPlayer:(WAPlayer *)player
@@ -379,11 +369,22 @@
 {
     if (self.isSmallerScreenSize)
     {
+        if (self.gameModel.players.count == 2) {
+            return CGSizeMake(250, 247);
+            [self.playerCell.playerHealth setFont:[UIFont boldSystemFontOfSize:100]];
+        } else {
         return CGSizeMake(150,130);
+        }
     }
     else
     {
+        if (self.gameModel.players.count == 2) {
+            return CGSizeMake(250, 247);
+            [self.playerCell.playerHealth setFont:[UIFont boldSystemFontOfSize:100]];
+
+        } else {
         return CGSizeMake(150, 148);
+        }
     }
 }
 

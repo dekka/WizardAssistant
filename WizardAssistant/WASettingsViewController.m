@@ -131,6 +131,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    
     WAPlayer *player = [self.gameModel.players objectAtIndex:self.gameModel.players.count-1];
     [player setupPlayerWithName:textField.text AndFormat:self.gameModel.formatIsEdh];
     _isEditing = NO;
