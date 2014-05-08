@@ -362,6 +362,7 @@
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Random Player is..." message:[NSString stringWithFormat:@"%@!!!",player.name] delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil, nil];
     [alertView show];
+    
     [self savePlayers];
 
 }
@@ -372,19 +373,19 @@
     {
         if (self.gameModel.players.count == 2) {
             return CGSizeMake(250, 247);
-            [self.playerCell.playerHealth setFont:[UIFont boldSystemFontOfSize:100]];
+            [self.playerCell.playerHealth setFont:[UIFont boldSystemFontOfSize:200]];
         } else {
-        return CGSizeMake(150,130);
+            return CGSizeMake(150,130);
         }
     }
     else
     {
         if (self.gameModel.players.count == 2) {
             return CGSizeMake(250, 247);
-            [self.playerCell.playerHealth setFont:[UIFont boldSystemFontOfSize:100]];
+            [self.playerCell.playerHealth setFont:[UIFont boldSystemFontOfSize:200]];
 
         } else {
-        return CGSizeMake(150, 148);
+            return CGSizeMake(150, 148);
         }
     }
 }
