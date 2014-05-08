@@ -157,39 +157,13 @@
 		006DC7E519057A420031B76E /* WizardAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				00FB401219197C4300B86BD5 /* Controllers */,
+				00FB401119197C3E00B86BD5 /* Models */,
+				00FB401019197C3800B86BD5 /* Views */,
 				006DC7FA19057A420031B76E /* Images.xcassets */,
-				006DC7F419057A420031B76E /* Main_iPad.storyboard */,
-				006DC7F119057A420031B76E /* Main_iPhone.storyboard */,
 				006DC7E619057A420031B76E /* Supporting Files */,
-				0073A426190B18E90021F118 /* WAAddPlayerCell.h */,
-				0073A427190B18E90021F118 /* WAAddPlayerCell.m */,
 				006DC7EE19057A420031B76E /* WAAppDelegate.h */,
 				006DC7EF19057A420031B76E /* WAAppDelegate.m */,
-				0073A423190B18DF0021F118 /* WAEditCell.h */,
-				0073A424190B18DF0021F118 /* WAEditCell.m */,
-				001CC169190EC614009B717B /* WAPlayer.h */,
-				001CC16A190EC614009B717B /* WAPlayer.m */,
-				0067C74A1911B18500779BD8 /* WACommanderDamage.h */,
-				0067C74B1911B18500779BD8 /* WACommanderDamage.m */,
-				0073A41D190AF50D0021F118 /* WAPlayerCell.h */,
-				0073A41E190AF50D0021F118 /* WAPlayerCell.m */,
-				00C1D57C1912F48400F03C7E /* PlayerCelPanelView.h */,
-				00C1D57D1912F48400F03C7E /* PlayerCelPanelView.m */,
-				0073A420190B146A0021F118 /* WASettingsViewController.h */,
-				0073A421190B146A0021F118 /* WASettingsViewController.m */,
-				006DC7F719057A420031B76E /* WAViewController.h */,
-				006DC7F819057A420031B76E /* WAViewController.m */,
-				0067C7531912B1B100779BD8 /* WACoinFlipController.h */,
-				0067C7541912B1B100779BD8 /* WACoinFlipController.m */,
-				0067C7581912B1DA00779BD8 /* CoinFlipView.xib */,
-				001CC16C190EFC91009B717B /* WACommanderDamageView.h */,
-				001CC16D190EFC91009B717B /* WACommanderDamageView.m */,
-				001CC16F190EFF86009B717B /* CommanderDamage.xib */,
-				0067C7451911776D00779BD8 /* WAPoisonDamageView.h */,
-				0067C7461911776D00779BD8 /* WAPoisonDamageView.m */,
-				0067C748191177A100779BD8 /* PoisonDamage.xib */,
-				00C1D5791912D8E900F03C7E /* GameModel.h */,
-				00C1D57A1912D8E900F03C7E /* GameModel.m */,
 			);
 			path = WizardAssistant;
 			sourceTree = "<group>";
@@ -221,6 +195,56 @@
 				006DC80A19057A420031B76E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		00FB401019197C3800B86BD5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				006DC7F419057A420031B76E /* Main_iPad.storyboard */,
+				006DC7F119057A420031B76E /* Main_iPhone.storyboard */,
+				0073A41D190AF50D0021F118 /* WAPlayerCell.h */,
+				0073A41E190AF50D0021F118 /* WAPlayerCell.m */,
+				00C1D57C1912F48400F03C7E /* PlayerCelPanelView.h */,
+				00C1D57D1912F48400F03C7E /* PlayerCelPanelView.m */,
+				0067C7581912B1DA00779BD8 /* CoinFlipView.xib */,
+				001CC16C190EFC91009B717B /* WACommanderDamageView.h */,
+				001CC16D190EFC91009B717B /* WACommanderDamageView.m */,
+				001CC16F190EFF86009B717B /* CommanderDamage.xib */,
+				0067C7451911776D00779BD8 /* WAPoisonDamageView.h */,
+				0067C7461911776D00779BD8 /* WAPoisonDamageView.m */,
+				0067C748191177A100779BD8 /* PoisonDamage.xib */,
+				0073A423190B18DF0021F118 /* WAEditCell.h */,
+				0073A424190B18DF0021F118 /* WAEditCell.m */,
+				0073A426190B18E90021F118 /* WAAddPlayerCell.h */,
+				0073A427190B18E90021F118 /* WAAddPlayerCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		00FB401119197C3E00B86BD5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				00C1D5791912D8E900F03C7E /* GameModel.h */,
+				00C1D57A1912D8E900F03C7E /* GameModel.m */,
+				001CC169190EC614009B717B /* WAPlayer.h */,
+				001CC16A190EC614009B717B /* WAPlayer.m */,
+				0067C74A1911B18500779BD8 /* WACommanderDamage.h */,
+				0067C74B1911B18500779BD8 /* WACommanderDamage.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		00FB401219197C4300B86BD5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0073A420190B146A0021F118 /* WASettingsViewController.h */,
+				0073A421190B146A0021F118 /* WASettingsViewController.m */,
+				006DC7F719057A420031B76E /* WAViewController.h */,
+				006DC7F819057A420031B76E /* WAViewController.m */,
+				0067C7531912B1B100779BD8 /* WACoinFlipController.h */,
+				0067C7541912B1B100779BD8 /* WACoinFlipController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

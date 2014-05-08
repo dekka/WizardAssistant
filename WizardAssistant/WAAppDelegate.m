@@ -41,6 +41,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

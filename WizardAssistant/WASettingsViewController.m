@@ -81,7 +81,8 @@
             [self.gameModel.players addObject:newPlayer];
             _isEditing = YES;
             [_collectionView reloadData];
-            self.editCell = (id)[self.collectionView cellForItemAtIndexPath:indexPath];
+            self.editCell = (WAEditCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+            
             [self.editCell.nameField becomeFirstResponder];
         }
     }
@@ -108,6 +109,8 @@
         editCell.layer.borderWidth = 2.0f;
         editCell.layer.borderColor = [UIColor blueColor].CGColor;
         
+        editCell.removePlayerButton.tag = indexPath.row;
+        
         return editCell;
     }
     
@@ -115,8 +118,11 @@
 
 - (IBAction)removePlayer:(id)sender
 {
+   
     
-    [self.gameModel.players removeObjectAtIndex:[[[self.collectionView indexPathsForSelectedItems] firstObject]row]];
+    UIButton *buttonPressed = (UIButton *)sender;
+    
+    [self.gameModel.players removeObjectAtIndex:buttonPressed.tag];
 //    NSLog(@"button pressed");
 //    NSLog(@" %d",self.players.count);
     _isEditing = NO;

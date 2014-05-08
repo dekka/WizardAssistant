@@ -36,9 +36,11 @@
 {
     [super viewDidLoad];
     
-//    if (self.view.frame.size.height < 481) {
-//        self.isSmallerScreenSize = YES;
-//    }
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
+    if (self.view.frame.size.height < 481) {
+        self.isSmallerScreenSize = YES;
+    }
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -129,18 +131,20 @@
     
     WAPlayerCell *playerCell;
     
-//    if (self.isSmallerScreenSize) {
-//        playerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SmallerPlayerCell" forIndexPath:indexPath];
-//    } else {
+    if (self.isSmallerScreenSize) {
+        playerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SmallerPlayerCell" forIndexPath:indexPath];
+    } else {
     
         playerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
-//    }
+    }
     if (self.gameModel.formatIsEdh)
     {
         [playerCell setupCommanderDamageWithPlayerCount:self.gameModel.players.count AndPlayer:player atIndexPath:indexPath];
     } else {
         [playerCell setupStandardFormatCellsWithPlayer:player atIndexPath:indexPath];
     }
+  
+    
     
     playerCell.playerName.text = player.name;
     playerCell.playerHealth.text = [NSString stringWithFormat:@"%ld",(long)player.health];
@@ -187,6 +191,15 @@
     CGPoint pointInCell = [gestureRecognizer locationInView:cellTapped];
 //    NSLog(@"j: %@",NSStringFromCGPoint(pointInCell));
     
+    if (self.isSmallerScreenSize) {
+        if (pointInCell.y < 65) {
+            [self damageUpForCell:cellTapped andPlayer:player];
+
+        } else if (pointInCell.y > 66) {
+            [self damageDownForCell:cellTapped andPlayer:player];
+
+        }
+    } else {
     if (pointInCell.y < 75)
     {
         [self damageUpForCell:cellTapped andPlayer:player];
@@ -194,7 +207,7 @@
     {
         [self damageDownForCell:cellTapped andPlayer:player];
     }
-    
+    }
 }
 
 - (void)damageUpForCell:(WAPlayerCell *)cellTapped andPlayer:(WAPlayer *)player
@@ -234,11 +247,12 @@
         dimView.alpha = 0.7f;
         dimView.tag = 1111;
         dimView.userInteractionEnabled = NO;
+        
         [self.view addSubview:dimView];
         
         if (self.gameModel.formatIsEdh)
         {
-            self.commanderDamageView = [[WACommanderDamageView alloc] initWithFrame:CGRectMake(15, -320, 290, 344)];
+            self.commanderDamageView = [[WACommanderDamageView alloc] initWithFrame:CGRectMake(15, -320, 290, 380)];
             self.commanderDamageView.alpha = 0.9f;
             self.commanderDamageView.layer.masksToBounds = YES;
             self.commanderDamageView.layer.cornerRadius = 10.0;
@@ -247,7 +261,7 @@
             [self.view addSubview:self.commanderDamageView];
             
             [UIView animateWithDuration:.3 animations:^{
-                self.commanderDamageView.frame = CGRectMake(15, 30, 290, 344);
+                self.commanderDamageView.frame = CGRectMake(15, 30, 290, 380);
             }];
         } else
         {
@@ -314,6 +328,16 @@
     }
 }
 
+-(void)disableInterfaceForCoinAndDice
+{
+      self.collectionView.userInteractionEnabled = NO;
+}
+
+-(void)enableInterfaceForCoinAndDice
+{
+    self.collectionView.userInteractionEnabled = YES;
+}
+
 - (IBAction)coinFlipButtonPressed:(id)sender
 {
     UIView *dimView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
@@ -321,6 +345,8 @@
     dimView.alpha = 0.7f;
     dimView.tag = 1111;
     dimView.userInteractionEnabled = NO;
+    
+   
     [self.view addSubview:dimView];
 
     self.coinFlipView = [[WACoinFlipController alloc] initWithFrame:CGRectMake(60, -200, 200, 200)];
@@ -349,17 +375,17 @@
 
 }
 
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (self.isSmallerScreenSize)
-//    {
-//        return CGSizeMake(150,130);
-//    }
-//    else
-//    {
-//        return CGSizeMake(150, 148);
-//    }
-//}
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.isSmallerScreenSize)
+    {
+        return CGSizeMake(150,130);
+    }
+    else
+    {
+        return CGSizeMake(150, 148);
+    }
+}
 
 
 

@@ -11,5 +11,6 @@
 @interface WAEditCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UIButton *removePlayerButton;
 
 @end

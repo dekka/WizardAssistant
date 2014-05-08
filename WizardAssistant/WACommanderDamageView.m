@@ -162,10 +162,11 @@
 {
     [UIView animateWithDuration:.3 animations:^{
         
-        self.frame = CGRectMake(15, -344, 290, 344);
+        self.frame = CGRectMake(15, -344, 290, 380);
     } completion:^(BOOL finished) {
         [self.dimView removeFromSuperview];
         [self removeFromSuperview];
+        
     }];
     
 }
