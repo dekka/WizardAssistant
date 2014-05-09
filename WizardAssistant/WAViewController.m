@@ -38,10 +38,12 @@
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
-    if (self.view.frame.size.height < 481) {
-        self.isSmallerScreenSize = YES;
+    _isSmallerScreenSize = [[UIScreen mainScreen] bounds].size.height == 480;
+    if (_isSmallerScreenSize) {
+        NSLog(@"3.5 \"");
+    } else {
+        NSLog(@"4\"");
     }
-    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -131,12 +133,12 @@
     
     WAPlayerCell *playerCell;
     
-    if (self.isSmallerScreenSize) {
-        playerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SmallerPlayerCell" forIndexPath:indexPath];
-    } else {
-    
+//    if (self.isSmallerScreenSize) {
+//        playerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"SmallerPlayerCell" forIndexPath:indexPath];
+//    } else {
+//    
         playerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
-    }
+//    }
     if (self.gameModel.formatIsEdh)
     {
         [playerCell setupCommanderDamageWithPlayerCount:self.gameModel.players.count AndPlayer:player atIndexPath:indexPath];
@@ -301,23 +303,13 @@
 
 - (void)edhModeChanged
 {
-    if (self.gameModel.formatIsEdh)
-    {
-        self.gameModel.formatIsEdh = NO;
-        for (WAPlayer *player in self.gameModel.players)
-        {
-            player.health = 20;
-            player.poisonDamageTaken = 0;
-        }
-        
-    } else{
-        self.gameModel.formatIsEdh = YES;
-        for (WAPlayer *player in self.gameModel.players)
-        {
-            player.health = 40;
-            player.poisonDamageTaken = 0;
-        }
+    _gameModel.formatIsEdh = !_gameModel.formatIsEdh;
+
+    for (WAPlayer *player in _gameModel.players) {
+        player.health = _gameModel.formatIsEdh ? 40 : 20;
+        player.poisonDamageTaken = 0;
     }
+
 }
 
 -(void)disableInterfaceForCoinAndDice

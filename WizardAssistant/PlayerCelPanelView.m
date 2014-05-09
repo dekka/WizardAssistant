@@ -70,7 +70,6 @@
     //// Subframes
     CGRect playerPanel = CGRectMake(CGRectGetMinX(playerPanelFrame) - 1, CGRectGetMinY(playerPanelFrame), floor((CGRectGetWidth(playerPanelFrame) + 1) * 1.00662 + 0.5), floor((CGRectGetHeight(playerPanelFrame)) * 1.00000 + 0.5));
     
-    
     //// PlayerPanel
     {
         //// PanelBottom Drawing
